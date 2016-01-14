@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 97a5105eacccb49fcbef0d367103804e
+timeCreated: 1427927394
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tabla_1
+    21300002: Mad_Sig
+    21300004: Tabla_2
+    21300006: Tabla_3
+    21300008: Mad_Tit
+    21300010: Ttonco_1
+    21300012: Ttonco_2
+    21300014: Ttonco_3
+    21300016: Ttonco_4
+    21300018: Ttonco_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Tabla_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 2111
+        width: 1351
+        height: 415
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mad_Sig
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 1783
+        width: 1322
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tabla_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1571
+        width: 1344
+        height: 415
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tabla_3
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 944
+        width: 1351
+        height: 412
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mad_Tit
+      rect:
+        serializedVersion: 2
+        x: 1593
+        y: 735
+        width: 1502
+        height: 804
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ttonco_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11
+        width: 510
+        height: 518
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ttonco_2
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 0
+        width: 553
+        height: 542
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ttonco_3
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 18
+        width: 524
+        height: 511
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ttonco_4
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 63
+        width: 450
+        height: 437
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Ttonco_5
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 2
+        width: 553
+        height: 540
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
