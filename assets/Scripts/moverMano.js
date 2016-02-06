@@ -58,7 +58,7 @@ function verificarnivel(objeto)
 {
 	if(puntos==10 && level==1)
 	{
-		cargarZancudos(20,objeto);
+		//cargarZancudos(20,objeto);
 		level+=1;
 		//loadMsj.level =  0;
 		//loadMsj.imagen = true;
