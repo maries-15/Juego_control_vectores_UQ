@@ -3,13 +3,14 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-	public float spawnTime = 0;		// The amount of time between each spawn.
-	public float spawnInicio ;		// The amount of time before spawning starts.
+	private float spawnTime = 0;		// The amount of time between each spawn.
+	private float spawnInicio;	// The amount of time before spawning starts.
 	public GameObject[] enemies;	// Array of enemy prefabs.
 	private vidas svidas;	
 	public GameObject Valdes;
 
-	Component script;
+
+	//Component script;
 	private int c = 1;
 	float l = 3f;
 	public static int oleada1 = 11;
@@ -22,6 +23,7 @@ public class Spawner : MonoBehaviour
 	void Start ()
 	{ 
 		svidas = Valdes.GetComponent<vidas> ();
+		spawnInicio  = Random.Range (0.3f, 0.8f);	
 		controlSpawner = controlfinal.GetComponent<controlSpawner> ();
 		spawnTime = Random.Range (2.3f, l);
 		//print (spawnTime);
@@ -67,7 +69,7 @@ public class Spawner : MonoBehaviour
 		if (c > oleada2) {
 			CancelInvoke ();
 			l=1.5f;
-			spawnTime = Random.Range (0.5f, l);
+			spawnTime = Random.Range (1.0f, l);
 			print (spawnTime);
 			InvokeRepeating("Spawn", spawnInicio, spawnTime);
 		}
