@@ -7,7 +7,13 @@ public var option_2:UnityEngine.UI.Button;
 public var option_3:UnityEngine.UI.Button;
 public var option_4:UnityEngine.UI.Button;
 public var question:UnityEngine.UI.Text;
+//Arreglo de todas las preguntas
 private var questions:Array = new Array();
+
+//Arreglo de la pregunta cargada
+var arrayQue : Array = new Array();
+
+public static var respuesta = "0";
 //Variable para ir llenando la matriz con cada pregunta y conocer el numero de preguntas
 
 
@@ -18,7 +24,21 @@ function Start () {
 
 }
 
+function OnClick(_select : String)
+{
+	respuesta = _select;
+	if(respuesta.Equals(arrayQue[5]))
+	{
+		print(":D");
+	}
+	else{
+		print(respuesta+":(");
+	}
+}
+
 function Update () {
+
+	
 
 }
 
@@ -86,8 +106,8 @@ function ChangeButtonText(_button : Button, _newText : String) {
  {
  	
  
- 	var arrayQue : Array = new Array();
- 	arrayQue= questions[Random.Range(0,questions.length)];
+ 	arrayQue = new Array();
+ 	arrayQue = questions[Random.Range(0,questions.length)];
 
 
  	question.text = arrayQue[0];
@@ -97,4 +117,5 @@ function ChangeButtonText(_button : Button, _newText : String) {
  	ChangeButtonText(option_2, arrayQue[2]);
  	ChangeButtonText(option_3, arrayQue[3]);
  	ChangeButtonText(option_4, arrayQue[4]);
+
  }
