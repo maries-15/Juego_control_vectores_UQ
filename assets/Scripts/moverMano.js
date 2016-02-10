@@ -1,15 +1,22 @@
 ﻿private var posInicialMano:Vector3; //Pocision inicial de la mano
 private var aux:Vector3;// Pocision auxiliar para el movimiento de la mano
 private var puntos:int; // puntos que se han hecho
+public var  desing:GUISkin;
 var velocidadMano:int; // velocidad de la mano
 var Zancudo:GameObject; //objeto para instanciar los zancudos
 var impact : AudioClip; //efecto de sonido cuando se destruye un objeto zancudo
 var MyStyle: GUIStyle; // Estilo del label que muetsra los puntos
 var level:int;//nivel en el que va el jugador
-public var  desing:GUISkin;
+//timer vars
+var startTime:int;//Marca el inicia del tiempo desde se comienza a contabilizar
+var timer1:int;//LLeva registro del tempo segundo a segundo
+var total:int = 0;//Se usa para realizar la comparacion entre el tiempo actual con respecto al inicial
+var timeout:int = 12;//tiempo limite que se tiene para jugar
+var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
 function Start()
 {
+	startTime = Time.time;
 	posInicialMano=this.transform.position;
 	aux=posInicialMano;
 	velocidadMano=4;
@@ -41,16 +48,15 @@ function Update ()
 			Destroy(hit.rigidbody.gameObject);
 		}
 	}
+	if(total <= timeout){
+		TimerStart();
+	}
 }
 
 function OnGUI()
-{	/**
-	GUI.skin = desing;
-
-	GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,new Vector3(Screen.width / 480.0f, Screen.height / 320.0f, 1));	
-	GUI.Box(new Rect(280,25,10,10),"Puntos: " + puntos,MyStyle);
-	*/
-	 GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;  
+{	
+	GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;
+	GameObject.Find("Timer").GetComponent.<GUIText>().text = ""+segundos;  
 }
 
 
@@ -58,27 +64,24 @@ function verificarnivel(objeto)
 {
 	if(puntos==10 && level==1)
 	{
-		//cargarZancudos(20,objeto);
+		startTime = Time.time;
+		timeout = 24;
+		segundos = timeout;
+		cargarZancudos(20,objeto);
 		level+=1;
-		//loadMsj.level =  0;
-		//loadMsj.imagen = true;
-		Application.LoadLevel("cambioImagen");
-		
 	}
 	if(puntos==30 && level==2)
 	{
+		startTime = Time.time;
+		timeout = 40;
+		segundos = timeout;
 		cargarZancudos(50,objeto);
 		level+=1;
 	}
 	if(puntos == 80)
 	{
-	
-	//Application.LoadLevel("Menu");
-	/**
-	loadMsj.level =  1;
-	loadMsj.imagen = true;
-	Application.LoadLevel("cargar");
-	*/
+		Application.LoadLevel("cambioImagen");
+		serialization.SaveData(serialization.cont,"1");
 	}
 }
 //Metodo para instanciar los zancudos
@@ -94,3 +97,14 @@ function cargarZancudos(numero,objeto)
 		Instantiate(objeto,posInicial, this.transform.rotation);
 	}
 }
+
+ function TimerStart(){
+ 	
+	timer1 = Time.time;  //Set current time
+	total = timer1 - startTime;
+	segundos = timeout - total;
+	 print(total);
+	if(segundos == 0){ 
+		Debug.Log ("Perdiooo: ");
+	 }
+ }
