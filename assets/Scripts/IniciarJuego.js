@@ -1,5 +1,6 @@
 #pragma strict
 
+import UnityEngine.SceneManagement;
 
 function Start () {
 	serialization.Save();
@@ -7,7 +8,7 @@ function Start () {
 
 function OnMouseDown()
 {
-	Application.LoadLevel("cambioImagen");
+	SceneManager.LoadScene("cambioImagen");
 }
 
 function SalirJuego()

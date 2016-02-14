@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import UnityEngine.SceneManagement;
+
 	public var  vida:int;
 	public var  desing:GUISkin;
 
@@ -80,7 +82,8 @@
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("Reiniciar")) {
 			Mostrar = false;
-			Application.LoadLevel("level"+level);
+			SceneManager.LoadScene("level"+level);
+			//Application.LoadLevel("level"+level);
 			settingUi(true);
 			Time.timeScale =1.0f;
 			
@@ -88,9 +91,11 @@
 		if (GUILayout.Button ("Salir")) {
 			Mostrar = false;
 			if(level == 0)
-				Application.LoadLevel("menuInicial");
+				SceneManager.LoadScene("menuInicial");
+				//Application.LoadLevel("menuInicial");
 			else
-				Application.LoadLevel("Menu");	
+				SceneManager.LoadScene("Menu");
+				//Application.LoadLevel("Menu");	
 			settingUi(true);
 			
 		}
