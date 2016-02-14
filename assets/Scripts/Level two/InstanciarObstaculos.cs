@@ -15,8 +15,7 @@ public class InstanciarObstaculos : MonoBehaviour {
 	void Update () {
 		if(thisTransform.position.x < camarapos.position.x - 15)
 		{
-			thisTransform.position = new Vector3(camarapos.position.x + 12,0,0);
-			//thisTransform.localScale = new Vector3(1,Random.Range(1f,4f),1);
+			thisTransform.position = new Vector3(camarapos.position.x + 20,Random.Range(-9f,2f),0);
 		}
 	}
 }

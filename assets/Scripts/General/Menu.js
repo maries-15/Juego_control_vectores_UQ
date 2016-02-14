@@ -4,7 +4,7 @@
 	
 	public var Mostrar:boolean;
 	public var level:int;
-	public var herramienta:GameObject;
+	public var herramienta:GameObject;//pez
 	public var posicionInicial:Vector3;	
 	public var windowRect:Rect;
 	public var  desing:GUISkin;

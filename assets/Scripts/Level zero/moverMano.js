@@ -1,12 +1,10 @@
 ﻿private var posInicialMano:Vector3; //Pocision inicial de la mano
 private var aux:Vector3;// Pocision auxiliar para el movimiento de la mano
 private var puntos:int; // puntos que se han hecho
-public var  desing:GUISkin;
-var velocidadMano:int; // velocidad de la mano
 var Zancudo:GameObject; //objeto para instanciar los zancudos
 var impact : AudioClip; //efecto de sonido cuando se destruye un objeto zancudo
-var MyStyle: GUIStyle; // Estilo del label que muetsra los puntos
 var level:int;//nivel en el que va el jugador
+
 //timer vars
 var startTime:int;//Marca el inicia del tiempo desde se comienza a contabilizar
 var timer1:int;//LLeva registro del tempo segundo a segundo
@@ -19,9 +17,7 @@ function Start()
 	startTime = Time.time;
 	posInicialMano=this.transform.position;
 	aux=posInicialMano;
-	velocidadMano=4;
-	cargarZancudos(9,Zancudo);
-	level=1;
+	loadLevel();
 }
 
 function OnMouseDrag()
@@ -48,6 +44,12 @@ function Update ()
 			Destroy(hit.rigidbody.gameObject);
 		}
 	}
+	if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
+	{
+		print("Mata un zancudo para saltar el nivel");
+		puntos = 79;
+		level = 3;
+	}
 	if(total <= timeout){
 		TimerStart();
 	}
@@ -60,28 +62,20 @@ function OnGUI()
 }
 
 
-function verificarnivel(objeto)
+function verificarnivel(objectZancudo)
 {
 	if(puntos==10 && level==1)
 	{
-		startTime = Time.time;
-		timeout = 24;
-		segundos = timeout;
-		cargarZancudos(20,objeto);
-		level+=1;
+		changeLevel(24,20,true,objectZancudo);
 	}
 	if(puntos==30 && level==2)
 	{
-		startTime = Time.time;
-		timeout = 40;
-		segundos = timeout;
-		cargarZancudos(50,objeto);
-		level+=1;
+		changeLevel(40,50,true,objectZancudo);
 	}
-	if(puntos == 80)
+	if(puntos == 80 && level==3)
 	{
+		serialization.SaveData(1,0,"CI",null);
 		Application.LoadLevel("cambioImagen");
-		serialization.SaveData(serialization.cont,"1");
 	}
 }
 //Metodo para instanciar los zancudos
@@ -103,8 +97,33 @@ function cargarZancudos(numero,objeto)
 	timer1 = Time.time;  //Set current time
 	total = timer1 - startTime;
 	segundos = timeout - total;
-	 print(total);
 	if(segundos == 0){ 
-		Debug.Log ("Perdiooo: ");
+		Debug.Log ("Perdiooo:");
 	 }
+ }
+
+ function changeLevel(timeoutTemp, numberZancudos, options, objectZancudo){
+	startTime = Time.time;
+	timeout = timeoutTemp;
+	segundos = timeout;
+	cargarZancudos(numberZancudos,objectZancudo);
+	level+=1;
+	serialization.SaveData(null, level, null, null);
+ }
+
+ function loadLevel(){
+ 	level = parseInt(""+serialization.savedGame["subLevel"]);
+ 	var numberZancudos = 9;
+ 	puntos = 0;
+ 	if(level == 2){
+ 		numberZancudos = 20;
+ 		timeout = 24;
+ 		puntos = 10;
+ 	}
+ 	else if(level == 3){
+ 		numberZancudos = 50;
+ 		timeout = 40;
+ 		puntos = 30;
+ 	}
+ 	cargarZancudos(numberZancudos,Zancudo);
  }

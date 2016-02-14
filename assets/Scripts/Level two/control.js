@@ -1,88 +1,72 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class Pajarito_Salta : MonoBehaviour {
-
-
-	private float fuerzaDerecha = 7f;
-	private Rigidbody2D myrigidbody2d;
-	private Transform thisTransform;
-	private Animator anim;
-	private Transform camarapos;
-	private int puntos;
-	private float posicion;
-	public GUIStyle MyStyle;
-	private int lim = 50;
-	Vector3 v;
-	public GUIStyle ARRIBAStyle;
-	public GUIStyle ABAJOStyle;
+﻿private var  fuerzaDerecha:float = 8f;
+	private var  myrigidbody2d:Rigidbody2D;
+	private var  thisTransform:Transform;
+	private var  anim:Animator;
+	private var  camarapos:Transform;
+	private var  puntos:int;
+	private var  posicion:float;
+	public var  MyStyle:GUIStyle;
+	private var  lim:int = 50;
+	 var v:Vector3;
+	public var  ARRIBAStyle:GUIStyle;
+	public var ABAJOStyle:GUIStyle;
 
 
 
 	// Use this for initialization
-	void Start () {
-		anim = this.GetComponent<Animator>();
+	function Start () {
+		anim = this.GetComponent(Animator);
 		thisTransform = transform;
-		myrigidbody2d = this.GetComponent<Rigidbody2D>();
+		myrigidbody2d = this.GetComponent(Rigidbody2D);
 		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
 	}
-	void OnTriggerEnter2D(Collider2D col){
+
+	function OnTriggerEnter2D(col:Collider2D){
 		if(col.tag == "Enemy")
 		{
-			if(this.GetComponent<AudioSource>().isPlaying == false)
-				this.GetComponent<AudioSource>().Play();
-			//Destroy(col.gameObject);
+			if(this.GetComponent(AudioSource).isPlaying == false)
+				this.GetComponent(AudioSource).Play();
 			col.gameObject.transform.position = new Vector3(camarapos.position.x + 20,Random.Range(-9f,2f),0);
 			puntos+=1;
-			//col.gameObject.transform.localScale = new Vector3(1,Random.Range(1f,4f),1);
 		}
-		
 	}
 	// Update is called once per frame
-	void Update () {
-
-		if (puntos > 20) {
-			fuerzaDerecha = 8.5f;
+	function Update () {
+		//VerifyPuntos
+		if (puntos == 20) {
+			fuerzaDerecha = 10f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
-
 		}
-		if (puntos > 50) {
+		if (puntos == 50) {
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
-
+		}
+		if(puntos == 80){
+			fuerzaDerecha = 12f;
+			thisTransform.localScale =new Vector3(4f,4f,1f);
 		}
 
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		//Key controllers
+		if (Input.GetKey (KeyCode.RightArrow)) {//just development
 			thisTransform.position = new Vector3(thisTransform.position.x + 1f,thisTransform.position.y,0);;
-			print(thisTransform.position);
-				}
-
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			thisTransform.position = new Vector3(thisTransform.position.x - 1f ,thisTransform.position.y ,0);;
-			print(thisTransform.position);
 		}
-
+		if (Input.GetKey (KeyCode.LeftArrow)) {//just development
+			thisTransform.position = new Vector3(thisTransform.position.x - 1f ,thisTransform.position.y ,0);;
+		}
 		if (Input.GetKey(KeyCode.UpArrow)) {
 			v = new Vector3(thisTransform.position.x ,thisTransform.position.y + 0.3f,0);
-			if(v.y<=3.5f)
-			{
+			if(v.y<=3.5f){
 				thisTransform.position = v;
-				print(v.y);
 			}
-
 		}
-
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			v = new Vector3(thisTransform.position.x ,thisTransform.position.y - 0.3f,0);
-			if(v.y>=-9)
-			{
+			if(v.y>=-9){
 				thisTransform.position =v;
-				print(thisTransform.position);
 			}
-
 		}
+		//other controllers
 		if (myrigidbody2d.velocity.x < 2f && Time.timeScale == 1f && puntos < 20) {
-
 			//thisTransform.position = new Vector3(thisTransform.position.x + 0.1f,thisTransform.position.y,0);
 			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
 		} else if (myrigidbody2d.velocity.x < 9f && Time.timeScale == 1f && puntos >= 20){
@@ -109,16 +93,17 @@ public class Pajarito_Salta : MonoBehaviour {
 //		}
 	}
 
-	void Awake(){
+	function Awake(){
 		puntos = 0;
 		thisTransform = transform;
 		posicion = thisTransform.position.x + 5;
 	}
 
-	void OnGUI(){
+	function OnGUI(){
+		GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;  
 		GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,new Vector3(Screen.width / 480.0f, Screen.height / 320.0f, 1));
 		
-		GUI.Label(new Rect(0,290,0,0),"Score: " + puntos,MyStyle);
+	//	GUI.Label(new Rect(10,280,0,0),"Score: " + puntos,MyStyle);
 
 		if(GUI.RepeatButton(new Rect(415,170,50,50),"",ARRIBAStyle))
 		{
@@ -126,7 +111,6 @@ public class Pajarito_Salta : MonoBehaviour {
 			if(v.y<=3.5f)
 			{
 				thisTransform.position = v;
-				print(v.y);
 			}
 		}
 		
@@ -136,11 +120,8 @@ public class Pajarito_Salta : MonoBehaviour {
 			if(v.y>=-9)
 			{
 				thisTransform.position =v;
-				print(thisTransform.position);
 			}
 			
 		}
 		
 	}
-
-}

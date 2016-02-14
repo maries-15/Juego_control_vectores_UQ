@@ -11,6 +11,7 @@ public class Inicio_Final : MonoBehaviour {
 	public GUIStyle RETRYStyle;
 	public AudioClip audiofinal;
 	private AudioSource thisAudio;
+
 	// Use this for initialization
 	void Awake () {
 		thisTransform = transform;
