@@ -12,13 +12,13 @@ public class vidas : MonoBehaviour {
 	public bool Mostrar = false;
 
 	public GameObject Herramienta ;
-	private Component Mover;
+//	private Component Mover;
 	private ClickAndGo click;
 
 
 	// Use this for initialization
 	void Start () {
-		Mover = Herramienta.GetComponent<ClickAndGo>();
+//		Mover = Herramienta.GetComponent<ClickAndGo>();
 
 	}
 	

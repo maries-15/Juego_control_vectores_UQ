@@ -54,7 +54,7 @@ function OnGUI(){
 				if(GUI.Button(new Rect(160,130,125,75),"",REINICIARStyle))
 				{
 					Time.timeScale = 1;
-					Application.LoadLevel("level"+level);
+					SceneManager.LoadScene("level"+level);
 					herramienta.SetActive(true);
 					Mostrar = false;
 			
@@ -63,7 +63,7 @@ function OnGUI(){
 			if(GUI.Button(new Rect(160,230,125,75),"",SALIRStyle))
 				{
 					Time.timeScale = 1;
-					Application.LoadLevel("Menu");
+					SceneManager.LoadScene("Menu");
 					
 				}
 			}

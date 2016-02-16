@@ -9,6 +9,6 @@ public class MovimientoContinuoV2 : MonoBehaviour {
 	
 	void Update() { 
 		posicion.z = 0;
-		float step = speed * Time.deltaTime; //Marca la velocidad no en FPS sino en segundos 
+//		float step = speed * Time.deltaTime; //Marca la velocidad no en FPS sino en segundos 
 		transform.position = Vector3.MoveTowards(transform.position, posicion, speed); //Se transforma la posicion 
 	} }

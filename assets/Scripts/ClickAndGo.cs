@@ -23,10 +23,10 @@ public class ClickAndGo: MonoBehaviour {
 	public Vector3 posicionInicial;  
 	//Posicion inicial para introducir en el inspector.
 	//Las variables publicas en unity pueden cambiarse desde el inspector
-	bool inicio = true;
-	private bool Mostrar = false;
-	private bool pausa = false;
-	private Transform camarapos;
+//	bool inicio = true;
+//	private bool Mostrar = false;
+//	private bool pausa = false;
+//	private Transform camarapos;
 	private int puntos;
 	public GUIStyle MyStyle;
 	public GUIStyle CONTINUARStyle;
@@ -38,7 +38,7 @@ public class ClickAndGo: MonoBehaviour {
 	
 	void Start(){//Cuando inicia el programa
 		posicionInicial = this.transform.position;
-		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
+//		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
 		//Cambia la posicion a la posicion inicial
 	}              
 	void Update() {

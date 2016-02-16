@@ -75,7 +75,7 @@ function verificarnivel(objectZancudo)
 	if(puntos == 80 && level==3)
 	{
 		serialization.SaveData(1,0,"CI",null);
-		Application.LoadLevel("cambioImagen");
+		SceneManager.LoadScene("cambioImagen");
 	}
 }
 //Metodo para instanciar los zancudos

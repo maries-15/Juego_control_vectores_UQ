@@ -79,7 +79,7 @@ function func(){
 				
 		if (GUILayout.Button ("Reiniciar")) {
 			Mostrar = false;
-			Application.LoadLevel("level"+level);
+			SceneManager.LoadScene("level"+level);
 			settingUi(true);
 			
 		
@@ -88,9 +88,9 @@ function func(){
 		if (GUILayout.Button ("Salir")) {
 			Mostrar = false;
 			if(level == 0)
-				Application.LoadLevel("menuInicial");
+				SceneManager.LoadScene("menuInicial");
 			else
-				Application.LoadLevel("Menu");	
+				SceneManager.LoadScene("Menu");	
 			settingUi(true);
 			
 		}

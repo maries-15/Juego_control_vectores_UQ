@@ -3,20 +3,20 @@ using System.Collections;
 
 public class Inicio_Final : MonoBehaviour {
 
-	private bool Mostrar = false;
+//	private bool Mostrar = false;
 	public bool MostrarFinal = false;
-	private Transform thisTransform;
+//	private Transform thisTransform;
 	public GUIStyle PLAYStyle;
 	public GUIStyle EXITStyle;
 	public GUIStyle RETRYStyle;
 	public AudioClip audiofinal;
-	private AudioSource thisAudio;
+//	private AudioSource thisAudio;
 
 	// Use this for initialization
 	void Awake () {
-		thisTransform = transform;
+		//thisTransform = transform;
 		//Time.timeScale = 0f;
-		thisAudio = this.GetComponent<AudioSource>();
+		//thisAudio = this.GetComponent<AudioSource>();
 	}
 	/**
 	void OnGUI(){

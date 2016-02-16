@@ -27,11 +27,15 @@ import UnityEngine.SceneManagement;
 	public var barraVidas:GameObject;
 	public var windowRect:Rect;
 
+	public var mostrado = false;
+
 
 	// Use this for initialization
 	function Start () {
+
+		ui = new GameObject[9];
 		Mover = Herramienta.GetComponent(clickAndGo);
-		
+
 		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		fondo = GameObject.Find("Fondo");
@@ -54,7 +58,7 @@ import UnityEngine.SceneManagement;
 		if (vida == 1){ 
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life1;
 		} 
-		if (vida == 0){ 
+		if (vida == 0 && mostrado == false){ 
 			
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life0;
 			//(Mover as MonoBehaviour).enabled = false;
@@ -62,7 +66,9 @@ import UnityEngine.SceneManagement;
 			
 			//Herramienta.SetActive(false);
 			Mostrar = true;
+
 			settingUi(false);
+			mostrado = true;
 			//OnGUI();
 		} 
 	}
@@ -81,11 +87,14 @@ import UnityEngine.SceneManagement;
 				
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("Reiniciar")) {
+
+			
 			Mostrar = false;
 			SceneManager.LoadScene("level"+level);
-			//Application.LoadLevel("level"+level);
 			settingUi(true);
-			Time.timeScale =1.0f;
+
+
+			mostrado = false;
 			
 		}
 		if (GUILayout.Button ("Salir")) {
@@ -149,8 +158,8 @@ import UnityEngine.SceneManagement;
 
 		for(var i=0;i<ui.Length;i++)
 		{
-			Debug.Log(ui[i].name);
-		
+			//Debug.Log(ui[i].name);
+			//print (ui.Length);
 			
 			if(ui[i].GetComponent.<Renderer>() != null)
 				ui[i].GetComponent.<Renderer>().enabled = bole;
@@ -158,7 +167,13 @@ import UnityEngine.SceneManagement;
 				
 			if(ui[i].name.Equals("Points")||ui[i].name.Equals("Canvas_menu"))	
 				ui[i].SetActive(bole);
-			}
+
+
+			if(ui[i].name.Equals("Zancudo"))	
+				ui[i].SetActive(bole);
+		}
+
+
 	
 		
 	}	

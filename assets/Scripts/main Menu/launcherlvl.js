@@ -11,7 +11,7 @@ function Start (){
 
 function OnMouseDown (){
 	if(num == serialization.level){
-		Application.LoadLevel("cambioImagen");
+		SceneManager.LoadScene("cambioImagen");
 	}		
 }
  
@@ -19,6 +19,6 @@ function OnTriggerEnter2D(col: Collider2D){
 
 	if(Input.GetMouseButton(0))
 	{
-		Application.LoadLevel("cambioImagen");
+		SceneManager.LoadScene("cambioImagen");
 	}
 }

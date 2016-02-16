@@ -51,21 +51,21 @@ function efectos()
 	else if(cont==12)
 	{
 		serialization.SaveData(0,1,"Init",cont);
-		Application.LoadLevel("level0");
+		SceneManager.LoadScene("level0");
 	}
 	else if(cont==14)
 	{
 		serialization.SaveData(null,null,"Menu",cont);
-		Application.LoadLevel("Menu");
+		SceneManager.LoadScene("Menu");
 	}
 	else if(cont==21)
 	{
 		serialization.SaveData(1,0,"Init",cont);
-		Application.LoadLevel("level1");
+		SceneManager.LoadScene("level1");
 	}
 	else if(cont==24)
 	{
-		Application.LoadLevel("level2");
+		SceneManager.LoadScene("level2");
 	}
 }
 
