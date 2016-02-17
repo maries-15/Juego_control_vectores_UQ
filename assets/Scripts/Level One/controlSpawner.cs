@@ -24,9 +24,12 @@ public class controlSpawner : MonoBehaviour {
 
 	private int conEnemies = 0;
 
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+	
 		svidas = Valdes.GetComponent("Vidas") as vidas;
 		StartCoroutine (Spawn (lineOne));
 		StartCoroutine (Spawn (lineTwo));
@@ -74,6 +77,8 @@ public class controlSpawner : MonoBehaviour {
 			spawnTime = 4f;
 			spawnInicio = 2f;
 			gravityModifier (0.3f);
+			//serialization.savedGame.level1 = {"subLevel":oleada1, "puntos":puntos};
+			//serialization.SaveData(null, null, null);
 			//Time.timeScale = 0f;
 			//serialization.SaveData(null, level, null, null);
 

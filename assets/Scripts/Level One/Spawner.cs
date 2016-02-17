@@ -58,25 +58,7 @@ public class Spawner : MonoBehaviour
 
 	}
 
-//	void Spawn ()
-//	{
-//
-//			// Instantiate a random enemy.
-//			Instantiate(enemie, transform.position, transform.rotation);
-//			
-//
-//			
-//			// Play the spawning effect from all of the particle systems.
-//			foreach(ParticleSystem p in GetComponentsInChildren<ParticleSystem>())
-//			{
-//				p.Play();
-//				print ("Entro");
-//			}
-//			c++;
-//
-//		verificarEnemigos ();
-//
-//	}
+
 
 	public void verificarEnemigos()
 	{

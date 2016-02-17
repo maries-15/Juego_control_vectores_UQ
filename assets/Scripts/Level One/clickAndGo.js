@@ -26,7 +26,7 @@
 	//Las variables publicas en unity pueden cambiarse desde el inspector
 
 	private var camarapos:Transform ;
-	private var puntos:int = 0 ;
+	public static var puntos:int = 0 ;
 	public  var MyStyle:GUIStyle; 
 	
 	

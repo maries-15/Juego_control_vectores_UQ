@@ -4,6 +4,8 @@ import System.IO;
 
 static var savedGame: objectData;
 
+
+
 static function Save() {
 	if(!File.Exists(Application.persistentDataPath+"/filename.ext")){
 		var fs = new FileStream(Application.persistentDataPath+"/filename.ext", FileMode.Create);

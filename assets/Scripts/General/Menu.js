@@ -113,7 +113,7 @@ function OnGUI(){
 function settingUi(bol)
 {
 	var bole:boolean;
-	Debug.Log("Bole"+ bole);
+	//Debug.Log("Bole"+ bole);
 	bole = bol;
 
 	Debug.Log(level);
@@ -133,8 +133,8 @@ function settingUi(bol)
 	herramienta.SetActive(bole);
 	if(bole == false)
 	{
-	Time.timeScale = 0f;
-	fondo.GetComponent(SpriteRenderer).color = Color.gray;
+		Time.timeScale = 0f;
+		fondo.GetComponent(SpriteRenderer).color = Color.gray;
 	}
 	else
 	{
@@ -144,7 +144,7 @@ function settingUi(bol)
 
 	for(var i=0;i<ui.Length;i++)
 	{
-		Debug.Log(ui[i].name);
+		//Debug.Log(ui[i].name);
 	
 		
 		if(ui[i].GetComponent.<Renderer>() != null)

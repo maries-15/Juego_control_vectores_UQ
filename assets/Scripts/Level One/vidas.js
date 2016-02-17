@@ -20,10 +20,11 @@ import UnityEngine.SceneManagement;
 	public var level:int;
 	private var fondo:GameObject;
 	
-	public var life3:Sprite;
+	public static var life3:Sprite;
 	public var life2:Sprite;
 	public var life1:Sprite;
 	public var life0:Sprite;
+	static var actualLife = life3;
 	public var barraVidas:GameObject;
 	public var windowRect:Rect;
 
@@ -54,9 +55,11 @@ import UnityEngine.SceneManagement;
 		 
 		if (vida == 2){ 
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life2;
+			actualLife = life2;
 		} 
 		if (vida == 1){ 
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life1;
+			actualLife = life1;
 		} 
 		if (vida == 0 && mostrado == false){ 
 			
