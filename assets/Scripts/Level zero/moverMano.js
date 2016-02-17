@@ -1,6 +1,6 @@
 ﻿private var posInicialMano:Vector3; //Pocision inicial de la mano
 private var aux:Vector3;// Pocision auxiliar para el movimiento de la mano
-private var puntos:int; // puntos que se han hecho
+var puntos:int; // puntos que se han hecho
 var Zancudo:GameObject; //objeto para instanciar los zancudos
 var impact : AudioClip; //efecto de sonido cuando se destruye un objeto zancudo
 var level:int;//nivel en el que va el jugador
@@ -14,9 +14,6 @@ var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
 function Start()
 {
-	startTime = Time.time;
-	posInicialMano=this.transform.position;
-	aux=posInicialMano;
 	loadLevel();
 }
 
@@ -66,15 +63,16 @@ function verificarnivel(objectZancudo)
 {
 	if(puntos==10 && level==1)
 	{
-		changeLevel(24,20,true,objectZancudo);
+		changeLevel(24,20,objectZancudo);
 	}
 	if(puntos==30 && level==2)
 	{
-		changeLevel(40,50,true,objectZancudo);
+		changeLevel(40,50,objectZancudo);
 	}
 	if(puntos == 80 && level==3)
 	{
-		serialization.SaveData(1,0,"CI",null);
+		serialization.savedGame.level0 = {"subLevel":level, "puntos":puntos};
+		serialization.SaveData(1,null,"CI");
 		SceneManager.LoadScene("cambioImagen");
 	}
 }
@@ -102,28 +100,30 @@ function cargarZancudos(numero,objeto)
 	 }
  }
 
- function changeLevel(timeoutTemp, numberZancudos, options, objectZancudo){
+ function changeLevel(timeoutTemp, numberZancudos, objectZancudo){
 	startTime = Time.time;
 	timeout = timeoutTemp;
 	segundos = timeout;
 	cargarZancudos(numberZancudos,objectZancudo);
 	level+=1;
-	serialization.SaveData(null, level, null, null);
+	serialization.savedGame.level0 = {"subLevel":level, "puntos":puntos};
+	serialization.SaveData(null, null, null);
  }
 
  function loadLevel(){
- 	level = parseInt(""+serialization.savedGame["subLevel"]);
+ 	startTime = Time.time;
+	posInicialMano=this.transform.position;
+	aux=posInicialMano;
+ 	level = serialization.savedGame.level0["subLevel"];
+ 	puntos = serialization.savedGame.level0["puntos"];
  	var numberZancudos = 9;
- 	puntos = 0;
  	if(level == 2){
  		numberZancudos = 20;
  		timeout = 24;
- 		puntos = 10;
  	}
  	else if(level == 3){
  		numberZancudos = 50;
  		timeout = 40;
- 		puntos = 30;
  	}
  	cargarZancudos(numberZancudos,Zancudo);
  }

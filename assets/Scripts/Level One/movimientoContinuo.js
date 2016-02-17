@@ -1,6 +1,6 @@
 ﻿
 public static var posicion:Vector3; //Posicion a la que el protagonista se movera 
-public var  speed:float = 1000f; //velocidad
+public var  speed:float = 8000f; //velocidad
 	
 	function Update() { 
 	

@@ -4,6 +4,7 @@
 	private var  anim:Animator;
 	private var  camarapos:Transform;
 	private var  puntos:int;
+	private var level:int;
 	private var  posicion:float;
 	public var  MyStyle:GUIStyle;
 	private var  lim:int = 50;
@@ -34,14 +35,20 @@
 	function Update () {
 		//VerifyPuntos
 		if (puntos == 20) {
+			level++;
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
 			fuerzaDerecha = 10f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
 		if (puntos == 50) {
+			level++;
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 		if(puntos == 80){
+			level++;
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(4f,4f,1f);
 		}

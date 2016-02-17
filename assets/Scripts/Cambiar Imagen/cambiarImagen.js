@@ -1,6 +1,4 @@
-﻿import System.Collections.Generic; 
-import System.Runtime.Serialization.Formatters.Binary; 
-import System.IO;
+﻿import System.IO;
 
 private var material1:Texture2D;
 var icon:Texture2D;
@@ -12,7 +10,7 @@ var cont: int;
 
 function Start () 
 {
-	cont = serialization.cont+1;
+	cont = serialization.savedGame.image+1;
 	leerArchivo();
 	img = Resources.Load(""+cont, Sprite);
 	this.GetComponent(SpriteRenderer).sprite = img;
@@ -50,21 +48,22 @@ function efectos()
 	}
 	else if(cont==12)
 	{
-		serialization.SaveData(0,1,"Init",cont);
+		serialization.SaveData(0,cont,"Init");
 		SceneManager.LoadScene("level0");
 	}
 	else if(cont==14)
 	{
-		serialization.SaveData(null,null,"Menu",cont);
+		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("Menu");
 	}
 	else if(cont==21)
 	{
-		serialization.SaveData(1,0,"Init",cont);
+		serialization.SaveData(1,cont,"Init");
 		SceneManager.LoadScene("level1");
 	}
 	else if(cont==24)
 	{
+		serialization.SaveData(2,cont,"Init");
 		SceneManager.LoadScene("level2");
 	}
 }
