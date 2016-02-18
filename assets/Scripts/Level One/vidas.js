@@ -24,7 +24,7 @@ import UnityEngine.SceneManagement;
 	public var life2:Sprite;
 	public var life1:Sprite;
 	public var life0:Sprite;
-	static var actualLife = life3;
+	static var actualLife = 3;
 	public var barraVidas:GameObject;
 	public var windowRect:Rect;
 
@@ -43,6 +43,8 @@ import UnityEngine.SceneManagement;
 		if(level!=2)
 			posicionInicial = Herramienta.transform.position;
 
+		cargar();
+
 	}
 	
 	// Update is called once per frame
@@ -55,11 +57,11 @@ import UnityEngine.SceneManagement;
 		 
 		if (vida == 2){ 
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life2;
-			actualLife = life2;
+			actualLife = 2;
 		} 
 		if (vida == 1){ 
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life1;
-			actualLife = life1;
+			actualLife = 1;
 		} 
 		if (vida == 0 && mostrado == false){ 
 			
@@ -122,7 +124,6 @@ import UnityEngine.SceneManagement;
 		if (Mostrar) {
 			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");
 			
-			
 		}
 	
 	}
@@ -180,4 +181,17 @@ import UnityEngine.SceneManagement;
 	
 		
 	}	
-	
+
+	function cargar()
+	{
+		if(actualLife == 1){
+			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life1;
+		}
+		else if (actualLife == 2){
+			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life2;
+		}
+		else
+			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life3;
+
+
+	}

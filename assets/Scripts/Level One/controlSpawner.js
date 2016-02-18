@@ -27,12 +27,14 @@ private var herramienta;
 function Start () {
 
 
+		serialization.Save();
 		loadLevel();
 		StartCoroutine (Spawn (lineOne));
 		yield WaitForSeconds (Random.Range (spawnInicio, spawnTime));
 		StartCoroutine (Spawn (lineTwo));
 		yield WaitForSeconds (Random.Range (spawnInicio, spawnTime));
 		StartCoroutine (Spawn (lineThree));
+
 
 }
 
@@ -42,7 +44,7 @@ function Update () {
 			print ("Ganaste ");
 			terminados++;
 			serialization.savedGame.level1 = {"subLevel":100, "puntos":clickAndGo.puntos, "Sprite": vidas.actualLife};
-			serialization.SaveData(1,null,"CI");
+			serialization.SaveData(2,15,"CI");
 			SceneManager.LoadScene("cambioImagen");
 		
 		}
@@ -70,8 +72,7 @@ function Spawn( line : ParticleSystem ) : IEnumerator
 
  function verificarEnemigos()
 {
-print(conEnemies);
-print(oleada);
+
 	if (conEnemies == oleada) {
 
 		oleada += 25;
@@ -93,6 +94,7 @@ print(oleada);
 		gravityModifier (0.3f);
 		serialization.savedGame.level1 = {"subLevel":oleada, "puntos":clickAndGo.puntos,"Sprite" : vidas.actualLife};
 		serialization.SaveData(null, null, null);
+		print("Grabo");
 
 	}
 	if (conEnemies == oleada) {
@@ -118,7 +120,7 @@ function gravityModifier(gravity : float)
  	oleada = serialization.savedGame.level1["subLevel"];
 	clickAndGo.puntos = serialization.savedGame.level1["puntos"];
 
-	vidas.actualLife = serialization.savedGame.level1["Sprite"];
+	vidas.actualLife = serialization.savedGame.level1["Sprite"] ;
 
 
  }

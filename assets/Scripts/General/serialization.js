@@ -7,14 +7,19 @@ static var savedGame: objectData;
 
 
 static function Save() {
+
+	print(Application.persistentDataPath);
 	if(!File.Exists(Application.persistentDataPath+"/filename.ext")){
 		var fs = new FileStream(Application.persistentDataPath+"/filename.ext", FileMode.Create);
 		var bf = new BinaryFormatter();
 		savedGame = new objectData();
 		bf.Serialize(fs, savedGame);
 		fs.Close();
+		print(Application.persistentDataPath);
 	}
 	else Load();
+
+
 }
 
 static function Load() {

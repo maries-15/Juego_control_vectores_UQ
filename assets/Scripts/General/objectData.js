@@ -11,7 +11,7 @@ class objectData extends System.Object {
     var currentLevel:int = 0;
     var image:int = 0;
     var level0: Hashtable = {"subLevel":1, "puntos":0};
-    var level1: Hashtable = {"subLevel":20, "puntos":0,"Sprite":"life3"};
+    var level1: Hashtable = {"subLevel":20, "puntos":0,"Sprite": 3};
     var level2: Hashtable = {"subLevel":1, "puntos":0};
     var level3: Hashtable = {"subLevel":1, "puntos":0};
 }

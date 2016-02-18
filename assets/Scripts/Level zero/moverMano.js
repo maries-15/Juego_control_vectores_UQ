@@ -14,7 +14,8 @@ var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
 function Start()
 {
-	loadLevel();
+		serialization.Save();
+		loadLevel();
 }
 
 function OnMouseDrag()
