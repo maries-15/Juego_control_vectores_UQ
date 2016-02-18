@@ -12,10 +12,17 @@ var total:int = 0;//Se usa para realizar la comparacion entre el tiempo actual c
 var timeout:int = 12;//tiempo limite que se tiene para jugar
 var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
+var windowRect:Rect; //Frame en donde se informara al usuario que ha perdido
+public var  desing:GUISkin; //Skin general del juego
+var perdio = false; //Variable para controlar el momento en que el usuario pierde
+private var ui:GameObject[]; //Objetos de la interfaz con tag ui
+
 function Start()
 {
+		ui = GameObject.FindGameObjectsWithTag("ui");
 		serialization.Save();
 		loadLevel();
+		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 }
 
 function OnMouseDrag()
@@ -55,8 +62,14 @@ function Update ()
 
 function OnGUI()
 {	
+	if(!perdio){
 	GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;
 	GameObject.Find("Timer").GetComponent.<GUIText>().text = ""+segundos;  
+	}
+	if (perdio == true) {
+			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");
+			
+	}
 }
 
 
@@ -98,6 +111,9 @@ function cargarZancudos(numero,objeto)
 	segundos = timeout - total;
 	if(segundos == 0){ 
 		Debug.Log ("Perdiooo:");
+		Time.timeScale = 0f;
+		perdio = true;
+		settingUi(!perdio);
 	 }
  }
 
@@ -128,3 +144,77 @@ function cargarZancudos(numero,objeto)
  	}
  	cargarZancudos(numberZancudos,Zancudo);
  }
+
+
+
+ function func(){
+ 		GUI.skin = desing;	
+				
+		GUILayout.BeginHorizontal ();
+		if (GUILayout.Button ("Reiniciar")) {
+
+			
+			Time.timeScale = 1f;
+			settingUi(true);
+			perdio = false;	
+			loadLevel();
+			
+		}
+		if (GUILayout.Button ("Salir")) {
+			
+			if(level == 0)
+				SceneManager.LoadScene("menuInicial");
+				//Application.LoadLevel("menuInicial");
+			else
+				SceneManager.LoadScene("Menu");
+				//Application.LoadLevel("Menu");	
+			//settingUi(true);
+			
+		}
+		
+		GUILayout.EndHorizontal ();
+		
+					
+	}
+
+	function settingUi(bol)
+	{
+		var bole:boolean;
+		Debug.Log("Bole"+ bole);
+		bole = bol;
+
+		Debug.Log(level);
+		//gameObject.renderer.enabled = bole;
+		
+
+
+		if(bole == false)
+		{
+		Time.timeScale = 0f;
+	//		fondo.GetComponent(SpriteRenderer).color = Color.gray;
+		}
+		else
+		{
+		//	fondo.GetComponent(SpriteRenderer).color = Color.white;
+			Time.timeScale = 1f;
+		}
+
+		for(var i=0;i<ui.Length;i++)
+		{
+			//Debug.Log(ui[i].name);
+			//print (ui.Length);
+			
+			if(ui[i].GetComponent.<Renderer>() != null)
+				ui[i].GetComponent.<Renderer>().enabled = bole;
+			
+				
+			
+			ui[i].SetActive(bole);
+
+
+			if(ui[i].name.Equals("Zancudo"))	
+				ui[i].SetActive(bole);
+		}
+
+
+	}	
