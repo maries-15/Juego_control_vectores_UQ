@@ -61,10 +61,20 @@ function efectos()
 		serialization.SaveData(1,cont,"Init");
 		SceneManager.LoadScene("level1");
 	}
-	else if(cont==24)
+	else if(cont==23)
+	{
+		serialization.SaveData(null,cont,"Menu");
+		SceneManager.LoadScene("Menu");
+	}
+	else if(cont==31)
 	{
 		serialization.SaveData(2,cont,"Init");
 		SceneManager.LoadScene("level2");
+	}
+	else if(cont==34)
+	{
+		serialization.SaveData(null,cont,"Menu");
+		SceneManager.LoadScene("Menu");
 	}
 }
 

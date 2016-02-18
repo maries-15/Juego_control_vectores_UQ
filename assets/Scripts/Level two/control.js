@@ -37,20 +37,29 @@
 		if (puntos == 20) {
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.SaveData(null, null, null);
 			fuerzaDerecha = 10f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
 		if (puntos == 50) {
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.SaveData(null, null, null);
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 		if(puntos == 80){
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.SaveData(null, null, null);
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(4f,4f,1f);
+		}
+		if(puntos == 100){
+			print("ganoo");
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.SaveData(3,null,"CI");
+			SceneManager.LoadScene("cambioImagen");
 		}
 
 		//Key controllers
@@ -83,6 +92,12 @@
 			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
 		}
 
+		if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
+		{
+			print("Solo en modo desarrollo");
+			puntos = 100;
+			level = 3;
+		}
 //		if(Input.GetKeyDown(KeyCode.Space))
 //		{
 //			myrigidbody2d.AddForce(Vector2.up * fuerzaSalto);

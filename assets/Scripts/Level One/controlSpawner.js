@@ -41,13 +41,19 @@ function Start () {
 function Update () {
 
 	if (terminados == 3) {
-			print ("Ganaste ");
-			terminados++;
-			serialization.savedGame.level1 = {"subLevel":100, "puntos":clickAndGo.puntos, "Sprite": vidas.actualLife};
-			serialization.SaveData(2,15,"CI");
-			SceneManager.LoadScene("cambioImagen");
-		
-		}
+		print ("Ganaste ");
+		terminados++;
+		serialization.savedGame.level1 = {"subLevel":100, "puntos":clickAndGo.puntos, "Sprite": vidas.actualLife};
+		serialization.SaveData(2,null,"CI");
+		SceneManager.LoadScene("cambioImagen");
+	
+	}
+	if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
+	{
+		print("Solo en modo desarrollo");
+		clickAndGo.puntos = 100;
+		terminados = 3;
+	}
 }
 
 function Spawn( line : ParticleSystem ) : IEnumerator

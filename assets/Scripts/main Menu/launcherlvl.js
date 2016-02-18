@@ -10,13 +10,13 @@ function Start (){
 }
 
 function OnMouseDown (){
+	print(serialization.savedGame.currentLevel);
 	if(num == serialization.savedGame.currentLevel){
 		SceneManager.LoadScene("cambioImagen");
 	}		
 }
  
 function OnTriggerEnter2D(col: Collider2D){
-
 	if(Input.GetMouseButton(0))
 	{
 		SceneManager.LoadScene("cambioImagen");
