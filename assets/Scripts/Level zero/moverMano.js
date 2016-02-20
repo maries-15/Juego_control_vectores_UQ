@@ -4,7 +4,7 @@ var puntos:int; // puntos que se han hecho
 var Zancudo:GameObject; //objeto para instanciar los zancudos
 var impact : AudioClip; //efecto de sonido cuando se destruye un objeto zancudo
 var level:int;//nivel en el que va el jugador
-
+var numberZancudos:int;
 //timer vars
 var startTime:int;//Marca el inicia del tiempo desde se comienza a contabilizar
 var timer1:int;//LLeva registro del tempo segundo a segundo
@@ -21,7 +21,7 @@ function Start()
 {
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		serialization.Save();
-		loadLevel();
+		loadLevel(false);
 		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 }
 
@@ -41,7 +41,7 @@ function Update ()
 		var ray: Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		var hit: RaycastHit;
 	
-		if(Physics.Raycast(ray,hit))
+		if(Physics.Raycast(ray,hit) && perdio == false)
 		{
 			GetComponent.<AudioSource>().PlayOneShot(impact, 1);
 			puntos+=1;
@@ -127,21 +127,31 @@ function cargarZancudos(numero,objeto)
 	serialization.SaveData(null, null, null);
  }
 
- function loadLevel(){
+ function loadLevel(reiniciar:boolean){
  	startTime = Time.time;
 	posInicialMano=this.transform.position;
 	aux=posInicialMano;
  	level = serialization.savedGame.level0["subLevel"];
- 	puntos = serialization.savedGame.level0["puntos"];
- 	var numberZancudos = 9;
+ 	numberZancudos = 10;
+ 	if(level ==1 && reiniciar ==true){
+ 		numberZancudos = numberZancudos-(numberZancudos-puntos);
+ 	}
  	if(level == 2){
- 		numberZancudos = 20;
+ 		if(reiniciar === true){
+	 		numberZancudos = 20 - (30 - puntos);
+	 	}
+	 	else numberZancudos = 20;
  		timeout = 24;
  	}
  	else if(level == 3){
- 		numberZancudos = 50;
+ 		if(reiniciar === true){
+	 		numberZancudos = 50 - (80 - puntos);
+	 	}
+	 	else numberZancudos = 50;
  		timeout = 40;
  	}
+ 	print(numberZancudos);
+ 	puntos = serialization.savedGame.level0["puntos"];
  	cargarZancudos(numberZancudos,Zancudo);
  }
 
@@ -149,27 +159,16 @@ function cargarZancudos(numero,objeto)
 
  function func(){
  		GUI.skin = desing;	
-				
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("Reiniciar")) {
 
-			
 			Time.timeScale = 1f;
 			settingUi(true);
 			perdio = false;	
-			loadLevel();
-			
+			loadLevel(true);
 		}
 		if (GUILayout.Button ("Salir")) {
-			
-			if(level == 0)
-				SceneManager.LoadScene("menuInicial");
-				//Application.LoadLevel("menuInicial");
-			else
-				SceneManager.LoadScene("Menu");
-				//Application.LoadLevel("Menu");	
-			//settingUi(true);
-			
+			SceneManager.LoadScene("menuInicial");
 		}
 		
 		GUILayout.EndHorizontal ();
