@@ -1,16 +1,22 @@
-﻿private var  fuerzaDerecha:float = 8f;
-	private var  myrigidbody2d:Rigidbody2D;
-	private var  thisTransform:Transform;
-	private var  anim:Animator;
-	private var  camarapos:Transform;
-	private var  puntos:int;
-	private var level:int;
-	private var  posicion:float;
-	public var  MyStyle:GUIStyle;
-	private var  lim:int = 50;
-	 var v:Vector3;
-	public var  ARRIBAStyle:GUIStyle;
-	public var ABAJOStyle:GUIStyle;
+﻿private var  fuerzaDerecha:float;
+private var  myrigidbody2d:Rigidbody2D;
+private var  thisTransform:Transform;
+private var  anim:Animator;
+private var  camarapos:Transform;
+private var  puntos:int;
+private var level:int;
+private var  posicion:float;
+public var  MyStyle:GUIStyle;
+private var  lim:int = 50;
+ var v:Vector3;
+public var  ARRIBAStyle:GUIStyle;
+public var ABAJOStyle:GUIStyle;
+public static var vidas:int;
+
+var windowRect:Rect; //Frame en donde se informara al usuario que ha perdido
+public var  desing:GUISkin; //Skin general del juego
+var perdio = false; //Variable para controlar el momento en que el usuario pierde
+private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 
 
 
@@ -20,6 +26,9 @@
 		thisTransform = transform;
 		myrigidbody2d = this.GetComponent(Rigidbody2D);
 		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
+		ui = GameObject.FindGameObjectsWithTag("ui");
+		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
+		loadLevel();
 	}
 
 	function OnTriggerEnter2D(col:Collider2D){
@@ -33,31 +42,33 @@
 	}
 	// Update is called once per frame
 	function Update () {
+		if(vidas == 0){
+			Time.timeScale = 0f;
+			perdio = true;
+			settingUi(!perdio);
+		}
 		//VerifyPuntos
 		if (puntos == 20) {
 			level++;
-			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
+				"vidas":vidas, "fuerzaDerecha":10};
 			serialization.SaveData(null, null, null);
 			fuerzaDerecha = 10f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
 		if (puntos == 50) {
 			level++;
-			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
+				"vidas":vidas, "fuerzaDerecha":12};
 			serialization.SaveData(null, null, null);
 			fuerzaDerecha = 12f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 		if(puntos == 80){
-			level++;
-			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
-			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 12f;
-			thisTransform.localScale =new Vector3(4f,4f,1f);
-		}
-		if(puntos == 100){
 			print("ganoo");
-			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos};
+			level++;
+			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
+				"vidas":vidas, "fuerzaDerecha":12};
 			serialization.SaveData(3,null,"CI");
 			SceneManager.LoadScene("cambioImagen");
 		}
@@ -91,11 +102,10 @@
 		else if (myrigidbody2d.velocity.x < 19f && Time.timeScale == 1f && puntos >= 50){
 			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
 		}
-
 		if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
 		{
 			print("Solo en modo desarrollo");
-			puntos = 100;
+			puntos = 80;
 			level = 3;
 		}
 //		if(Input.GetKeyDown(KeyCode.Space))
@@ -122,28 +132,91 @@
 	}
 
 	function OnGUI(){
-		GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;  
-		GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,new Vector3(Screen.width / 480.0f, Screen.height / 320.0f, 1));
-		
-	//	GUI.Label(new Rect(10,280,0,0),"Score: " + puntos,MyStyle);
 
-		if(GUI.RepeatButton(new Rect(415,170,50,50),"",ARRIBAStyle))
-		{
-			v = new Vector3(thisTransform.position.x ,thisTransform.position.y + 0.3f,0);
-			if(v.y<=3.5f)
-			{
-				thisTransform.position = v;
-			}
+		if (perdio == true) {
+			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");	
 		}
-		
-		if(GUI.RepeatButton(new Rect(415,250,50,50),"",ABAJOStyle))
-		{
-			v = new Vector3(thisTransform.position.x ,thisTransform.position.y - 0.3f,0);
-			if(v.y>=-9)
+		else{
+			GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;  
+			GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,new Vector3(Screen.width / 480.0f, Screen.height / 320.0f, 1));
+			
+		//	GUI.Label(new Rect(10,280,0,0),"Score: " + puntos,MyStyle);
+
+			if(GUI.RepeatButton(new Rect(415,180,50,50),"",ARRIBAStyle))
 			{
-				thisTransform.position =v;
+				v = new Vector3(thisTransform.position.x ,thisTransform.position.y + 0.3f,0);
+				if(v.y<=3.5f)
+				{
+					thisTransform.position = v;
+				}
 			}
 			
+			if(GUI.RepeatButton(new Rect(415,260,50,50),"",ABAJOStyle))
+			{
+				v = new Vector3(thisTransform.position.x ,thisTransform.position.y - 0.3f,0);
+				if(v.y>=-9)
+				{
+					thisTransform.position =v;
+				}
+				
+			}
+		}		
+	}
+
+	function func(){
+ 		GUI.skin = desing;	
+		GUILayout.BeginHorizontal ();
+		if (GUILayout.Button ("Reiniciar")) {
+
+			Time.timeScale = 1f;
+			settingUi(true);
+			perdio = false;	
+			//loadLevel(true);
 		}
+		if (GUILayout.Button ("Salir")) {
+			SceneManager.LoadScene("menuInicial");
+		}
+		GUILayout.EndHorizontal ();
+	}
+
+	function settingUi(bol)
+	{
+		var bole:boolean;
+		Debug.Log("Bole"+ bole);
+		bole = bol;
+
+		Debug.Log(level);
+		//gameObject.renderer.enabled = bole;
 		
+		if(bole == false){
+		Time.timeScale = 0f;
+	//		fondo.GetComponent(SpriteRenderer).color = Color.gray;
+		}
+		else{
+		//	fondo.GetComponent(SpriteRenderer).color = Color.white;
+			Time.timeScale = 1f;
+		}
+		for(var i=0;i<ui.Length;i++)
+		{
+			//Debug.Log(ui[i].name);
+			//print (ui.Length);
+			if(ui[i].GetComponent.<Renderer>() != null)
+				ui[i].GetComponent.<Renderer>().enabled = bole;
+			ui[i].SetActive(bole);
+			if(ui[i].name.Equals("Zancudo"))	
+				ui[i].SetActive(bole);
+		}
+	}
+
+	function loadLevel(){
+		vidas = serialization.savedGame.level2['vidas'];
+		puntos = serialization.savedGame.level2['puntos'];
+		level = serialization.savedGame.level2['subLevel'];
+		fuerzaDerecha = parseFloat(""+serialization.savedGame.level2['fuerzaDerecha']);
+		if(level == 2){
+			thisTransform.localScale =new Vector3(2f,2f,1f);
+		}
+		else if(level == 3){
+			thisTransform.localScale =new Vector3(3f,3f,1f);
+		}
 	}

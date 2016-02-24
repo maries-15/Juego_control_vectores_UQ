@@ -63,8 +63,8 @@ function Update ()
 function OnGUI()
 {	
 	if(!perdio){
-	GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;
-	GameObject.Find("Timer").GetComponent.<GUIText>().text = ""+segundos;  
+		GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;
+		GameObject.Find("Timer").GetComponent.<GUIText>().text = ""+segundos;  
 	}
 	if (perdio == true) {
 			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");
