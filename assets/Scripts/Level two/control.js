@@ -29,6 +29,7 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 		loadLevel();
+
 	}
 
 	function OnTriggerEnter2D(col:Collider2D){

@@ -190,8 +190,6 @@ import UnityEngine.SceneManagement;
 		else if (actualLife == 2){
 			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life2;
 		}
-		else
-			barraVidas.GetComponent(UnityEngine.UI.Image).sprite = life3;
 
 
 	}

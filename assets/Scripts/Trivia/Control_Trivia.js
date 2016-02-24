@@ -11,7 +11,7 @@ public var question:UnityEngine.UI.Text;
 private var questions:Array = new Array();
 
 //Arreglo de la pregunta cargada
-var arrayQue : Array = new Array();
+var arrayQue : Array;
 
 public  var respuesta : String = "0";
 //Variable para ir llenando la matriz con cada pregunta y conocer el numero de preguntas
@@ -44,6 +44,9 @@ function OnClick(_select : String )
 		_button.GetComponent(Button).colors.highlightedColor = Color.red;
 
 	}
+
+	if(questions.length > 0)
+		AleatoryQuestion();
 }
 
 function Update () {
@@ -110,34 +113,45 @@ function ChangeButtonText(_button : Button, _newText : String) {
     }
  }
 
- /*
- *Función para seleccionar una pregunta aleatoria de la matriz de questions.
- */
- function AleatoryQuestion()
- {
- 	
- 
- 	arrayQue = new Array();
- 	var sel = Random.Range(0,questions.length);
- 	arrayQue = questions[sel];
- 	questions.RemoveAt(sel);
-
- 	question.text = arrayQue[0];
- 	var p : int = System.Convert.ToInt32(arrayQue[5]);
- 	respuesta  = arrayQue[p];
-
- 	arrayQue = flushArray(arrayQue);
-
- 	ChangeButtonText(option_1, arrayQue[1]);
- 	ChangeButtonText(option_2, arrayQue[2]);
- 	ChangeButtonText(option_3, arrayQue[3]);
- 	ChangeButtonText(option_4, arrayQue[4]);
+	 /*
+	 *Función para seleccionar una pregunta aleatoria de la matriz de questions.
+	 */
+	 function AleatoryQuestion()
+	 {
 
 
+	 	if(arrayQue != null)	
+	 		yield WaitForSeconds (2);
 
- }
+		clearButtons();
+	 	arrayQue = new Array();
+	 	var sel = Random.Range(0,questions.length);
+	 	arrayQue = questions[sel];
+	 	questions.RemoveAt(sel);
+
+	 	question.text = arrayQue[0];
+	 	var p : int = System.Convert.ToInt32(arrayQue[5]);
+	 	respuesta  = arrayQue[p];
+
+	 	arrayQue = flushArray(arrayQue);
+
+	 	ChangeButtonText(option_1, arrayQue[1]);
+	 	ChangeButtonText(option_2, arrayQue[2]);
+	 	ChangeButtonText(option_3, arrayQue[3]);
+	 	ChangeButtonText(option_4, arrayQue[4]);
 
 
+
+	 }
+
+
+	function clearButtons()
+	{
+		option_1.GetComponent(Button).colors.highlightedColor = Color.yellow;
+		option_2.GetComponent(Button).colors.highlightedColor = Color.yellow;
+		option_3.GetComponent(Button).colors.highlightedColor = Color.yellow;
+		option_4.GetComponent(Button).colors.highlightedColor = Color.yellow;
+	}
 
    function pressButton(_sel : String)
    {
