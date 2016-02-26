@@ -17,17 +17,18 @@ var windowRect:Rect; //Frame en donde se informara al usuario que ha perdido
 public var  desing:GUISkin; //Skin general del juego
 var perdio = false; //Variable para controlar el momento en que el usuario pierde
 private var ui:GameObject[]; //Objetos de la interfaz con tag ui
+var menu  = false;
 
 
 
 	// Use this for initialization
 	function Start () {
+			
 		anim = this.GetComponent(Animator);
 		thisTransform = transform;
 		myrigidbody2d = this.GetComponent(Rigidbody2D);
 		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
 		ui = GameObject.FindGameObjectsWithTag("ui");
-		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 		loadLevel();
 
 	}
@@ -43,7 +44,7 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 	}
 	// Update is called once per frame
 	function Update () {
-		if(vidas == 0){
+		if(vidas == 0 && menu == false){
 			Time.timeScale = 0f;
 			perdio = true;
 			settingUi(!perdio);
@@ -133,11 +134,16 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 	}
 
 	function OnGUI(){
+	GUI.skin = desing;
+		if (perdio == true ) {
 
-		if (perdio == true) {
-			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");	
+			Debug.Log("PP");
+			menu = true;
+			windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
+			windowRect = GUI.Window(0,windowRect,func,"PERDISTE \n");
+
 		}
-		else{
+		else if (menu != true){
 			GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;  
 			GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,new Vector3(Screen.width / 480.0f, Screen.height / 320.0f, 1));
 			
@@ -167,14 +173,15 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 	function func(){
  		GUI.skin = desing;	
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("Reiniciar")) {
+		if (GUILayout.Button ("REINICIAR")) {
 
 			Time.timeScale = 1f;
 			settingUi(true);
 			perdio = false;	
+			menu = false;
 			//loadLevel(true);
 		}
-		if (GUILayout.Button ("Salir")) {
+		if (GUILayout.Button ("SALIR")) {
 			SceneManager.LoadScene("menuInicial");
 		}
 		GUILayout.EndHorizontal ();
@@ -199,13 +206,17 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 		}
 		for(var i=0;i<ui.Length;i++)
 		{
-			//Debug.Log(ui[i].name);
-			//print (ui.Length);
+			
+
+			print(i+" "+ui[i].name);
 			if(ui[i].GetComponent.<Renderer>() != null)
 				ui[i].GetComponent.<Renderer>().enabled = bole;
-			ui[i].SetActive(bole);
-			if(ui[i].name.Equals("Zancudo"))	
+
+			else if (ui[i].name == "Pez")
+				ui[i].GetComponent.<control>().enabled = bole;
+			else 
 				ui[i].SetActive(bole);
+
 		}
 	}
 

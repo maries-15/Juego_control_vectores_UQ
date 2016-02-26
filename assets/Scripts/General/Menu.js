@@ -1,6 +1,6 @@
 #pragma strict
 	
-	public var MyStyle:GUIStyle;
+
 	
 	public var Mostrar:boolean;
 	public var level:int;
@@ -22,7 +22,7 @@ function Start () {
 	if(level!=2)
 		posicionInicial = herramienta.transform.position;
 		
-	windowRect = new Rect (Screen.width / 2 - 160, Screen.height / 2 - 160, 400, 400);
+	
 	
 	ui = GameObject.FindGameObjectsWithTag("ui");
 	fondo = GameObject.Find("Fondo");
@@ -103,7 +103,9 @@ function OnGUI(){
 	GUI.skin = desing;
 	
 	if (Mostrar) {
-			windowRect = GUI.Window(0,windowRect,func,"Menú de Pausa \n");
+
+			windowRect = new Rect (Screen.width / 2 - 160, Screen.height / 2 - 160, 400, 400);
+			windowRect = GUI.Window(0,windowRect,func,"PAUSA \n");
 			
 			
 		}

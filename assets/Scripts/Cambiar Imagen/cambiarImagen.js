@@ -7,6 +7,7 @@ var conversaciones:String[];
 var img:Sprite;
 var archivo;
 var cont: int;
+public var  desing:GUISkin; //Skin general del juego
 
 private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 	"21":"12","23":"12","25":"24","26":"4","27":"4","29":"28","31":"12","32":"22",
@@ -14,10 +15,12 @@ private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 
 function Start () 
 {
+	
 	cont = serialization.savedGame.image+1;
 	leerArchivo();
 	img = Resources.Load(""+cont, Sprite);
 	this.GetComponent(SpriteRenderer).sprite = img;
+
 }
 
 function verifyImage(pos){
@@ -29,7 +32,7 @@ function verifyImage(pos){
 function Update () {}
 
 function OnGUI(){ 
-
+GUI.skin = desing;
 	if(GUI.Button(Rect(Screen.width - Screen.width/8,Screen.height - Screen.height/5,Screen.width/13,Screen.height/6),icon))
 	{
 		if(!conversaciones[cont].Equals("")){
@@ -56,6 +59,7 @@ function OnGUI(){
 		GUI.Box(Rect (50,10,Screen.width - 100,(Screen.width/10)),"");
 	    GUI.Label(Rect (50,10,Screen.width - 100,(Screen.width/10)),""+conversaciones[cont-1]);
 	}
+
 }
 
 function efectos()
@@ -64,7 +68,7 @@ function efectos()
 	{
 		GetComponent.<AudioSource>().PlayOneShot(impact,1);
 	}
-	else if(cont==12)
+	else if(cont==11)
 	{
 		serialization.SaveData(0,cont,"Init");
 		SceneManager.LoadScene("level0");

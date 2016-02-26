@@ -22,7 +22,8 @@ function Start()
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		serialization.Save();
 		loadLevel(false);
-		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
+
+
 }
 
 function OnMouseDrag()
@@ -61,13 +62,16 @@ function Update ()
 }
 
 function OnGUI()
-{	
+{
+	
+	GUI.skin = desing;	
 	if(!perdio){
 		GameObject.Find("Points").GetComponent.<GUIText>().text = "Puntos: "+puntos;
 		GameObject.Find("Timer").GetComponent.<GUIText>().text = ""+segundos;  
 	}
 	if (perdio == true) {
-			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");
+			windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
+			windowRect = GUI.Window(0,windowRect,func,"PERDISTE \n");
 			
 	}
 }
@@ -158,20 +162,22 @@ function cargarZancudos(numero,objeto)
 
 
  function func(){
- 		GUI.skin = desing;	
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("Reiniciar")) {
+ 		
+	
+ 		GUILayout.BeginHorizontal ();
+		if (GUILayout.Button ("REINICIAR")) {
 
 			Time.timeScale = 1f;
 			settingUi(true);
 			perdio = false;	
 			loadLevel(true);
 		}
-		if (GUILayout.Button ("Salir")) {
+		if (GUILayout.Button ("  SALIR  ")) {
 			SceneManager.LoadScene("menuInicial");
 		}
-		
 		GUILayout.EndHorizontal ();
+		
+
 		
 					
 	}

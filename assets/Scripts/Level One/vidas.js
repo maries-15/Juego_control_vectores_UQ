@@ -5,10 +5,6 @@ import UnityEngine.SceneManagement;
 	public var  vida:int;
 	public var  desing:GUISkin;
 
-	
-	public var  CONTINUARStyle:GUIStyle;
-	public var  REINICIARStyle:GUIStyle;
-	public var SALIRStyle:GUIStyle;
 	public var  Mostrar:boolean = false;
 
 	public var  Herramienta:GameObject ;
@@ -26,7 +22,7 @@ import UnityEngine.SceneManagement;
 	public var life0:Sprite;
 	static var actualLife = 3;
 	public var barraVidas:GameObject;
-	public var windowRect:Rect;
+	var windowRect:Rect;
 
 	public var mostrado = false;
 
@@ -37,7 +33,7 @@ import UnityEngine.SceneManagement;
 		ui = new GameObject[9];
 		Mover = Herramienta.GetComponent(clickAndGo);
 
-		windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
+
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		fondo = GameObject.Find("Fondo");
 		if(level!=2)
@@ -88,7 +84,7 @@ import UnityEngine.SceneManagement;
 	}
 	
  	function func(){
- 		GUI.skin = desing;	
+ 		
 				
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("Reiniciar")) {
@@ -118,12 +114,16 @@ import UnityEngine.SceneManagement;
 		
 						
 	}
+
+	function OnAwake(){
+		
+	}
 	
 	function OnGUI(){
-		//GUI.skin = desing;
+		GUI.skin = desing;	
 		if (Mostrar) {
 			windowRect = GUI.Window(0,windowRect,func,"Has Perdido \n");
-			
+			windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 		}
 	
 	}

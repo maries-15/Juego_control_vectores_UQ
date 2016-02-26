@@ -10,7 +10,7 @@ function Start () {
 }
 
 function Update () {
-	if(control.vidas != lifesCurrent){
+	if(control.vidas != lifesCurrent && control.vidas > 0){
 		checkLifes();
 	}
 }
