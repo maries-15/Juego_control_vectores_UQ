@@ -32,7 +32,7 @@ function verifyImage(pos){
 function Update () {}
 
 function OnGUI(){ 
-GUI.skin = desing;
+	GUI.skin = desing;
 	if(GUI.Button(Rect(Screen.width - Screen.width/8,Screen.height - Screen.height/5,Screen.width/13,Screen.height/6),icon))
 	{
 		if(!conversaciones[cont].Equals("")){
@@ -68,7 +68,7 @@ function efectos()
 	{
 		GetComponent.<AudioSource>().PlayOneShot(impact,1);
 	}
-	else if(cont==11)
+	else if(cont==12)
 	{
 		serialization.SaveData(0,cont,"Init");
 		SceneManager.LoadScene("level0");
@@ -97,6 +97,10 @@ function efectos()
 	{
 		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("Menu");
+	}
+	else if(cont==44)
+	{
+		SceneManager.LoadScene("SceneLavaderoEC");
 	}
 }
 
