@@ -11,16 +11,21 @@ public var  desing:GUISkin; //Skin general del juego
 
 private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 	"21":"12","23":"12","25":"24","26":"4","27":"4","29":"28","31":"12","32":"22",
-	"33":"22","34":"12","36":"35","38":"37","40":"39","41":"12","43":"42","44":"12"};
+	"33":"22","34":"12","36":"35","38":"37","40":"39","41":"12"};
 
 function Start () 
 {
 	
 	cont = serialization.savedGame.image+1;
 	leerArchivo();
-	img = Resources.Load(""+cont, Sprite);
+	var imageRty = verifyImage(cont);
+	if(imageRty != null){
+		img = Resources.Load(""+imageRty, Sprite);
+	}
+	else{
+		img = Resources.Load(""+cont, Sprite);
+	}
 	this.GetComponent(SpriteRenderer).sprite = img;
-
 }
 
 function verifyImage(pos){
@@ -35,11 +40,12 @@ function OnGUI(){
 	GUI.skin = desing;
 	if(GUI.Button(Rect(Screen.width - Screen.width/8,Screen.height - Screen.height/5,Screen.width/13,Screen.height/6),icon))
 	{
-		if(!conversaciones[cont].Equals("")){
+		if(!conversaciones[cont-1].Equals("cargando")){
 			cont = cont+1;
 			efectos();
 			var posicionRendered:String;
 			var imageRendered = verifyImage(cont);
+			print(imageRendered);
 			if(imageRendered != null){
 				posicionRendered = imageRendered;
 			}
@@ -50,7 +56,7 @@ function OnGUI(){
 			this.GetComponent(SpriteRenderer).sprite = img;
 		}		
 	}
-	if(!conversaciones[cont].Equals(""))
+	if(!conversaciones[cont-1].Equals("cargando"))
 	{
 		var centeredStyle = GUI.skin.GetStyle("Label");
 	    centeredStyle.alignment = TextAnchor.UpperCenter;
@@ -98,8 +104,9 @@ function efectos()
 		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("Menu");
 	}
-	else if(cont==44)
+	else if(cont==41)
 	{
+		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("SceneLavaderoEC");
 	}
 }

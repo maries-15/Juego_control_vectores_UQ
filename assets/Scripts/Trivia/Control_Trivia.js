@@ -9,6 +9,7 @@ public var option_4:UnityEngine.UI.Button;
 public var question:UnityEngine.UI.Text;
 //Arreglo de todas las preguntas
 private var questions:Array = new Array();
+var conversaciones:String[];
 
 //Arreglo de la pregunta cargada
 var arrayQue : Array;
@@ -47,6 +48,8 @@ function OnClick(_select : String )
 
 	if(questions.length > 0)
 		AleatoryQuestion();
+	else
+		SceneManager.LoadScene("cambioImagen");
 }
 
 function Update () {
@@ -70,47 +73,62 @@ function ChangeButtonText(_button : Button, _newText : String) {
  function ChargeQuestions()
  {
  		var fileName : String = "/questions.txt";
-		var path : String = Application.persistentDataPath + fileName;
-		print(path);
+ 		var conversacionesFileText = Resources.Load("questions") as TextAsset;
+		//var path : String = Application.persistentDataPath + fileName;
+//		print(path);
 		//Variable que guarda cada linea del archivo de texto
 		var line;
 		//Variable donde finaliza las lineas correspondiente a cada pregunta, son seis por cada una
 		var lim = 0;
+		arrayQue = new Array();
 
-		var arrayQues:Array = new Array();
+		conversaciones  = conversacionesFileText.text.Split("\n"[0]);
 
-		try {
-       
-        var sr = new StreamReader(path);
+		for (var r = 0; r < conversaciones.length ; r ++)
+			{
+				print(conversaciones[r]);
+				 arrayQue.Push(conversaciones[r]);
+				 if (arrayQue.length ==  5)
+				 {
+				 	questions.Push(arrayQue);
+  		  			arrayQue = new Array();
+				 }
 
-        line = sr.ReadLine();
+				
+			}
 
-        while (line != null) {
-            
-           	arrayQues.Push(line);
-
-            line = sr.ReadLine();
-            lim ++;
-            if(lim > 5)
-            {
-
-            	
-            	questions.Push(arrayQues);
-            	lim =0;
-  		  		arrayQues = new Array();
-
-
-            }
-        }
-
-        sr.Close();
-       
-    }
-    catch (e) {
-        // Let the user know what went wrong.
-        print("The file could not be read:");
-        print(e.Message);
-    }
+//		try {
+//       
+//        var sr = new StreamReader(path);
+//
+//        line = sr.ReadLine();
+//
+//        while (line != null) {
+//            
+//           	arrayQues.Push(line);
+//
+//            line = sr.ReadLine();
+//            lim ++;
+//            if(lim > 5)
+//            {
+//
+//            	
+//            	questions.Push(arrayQues);
+//            	lim =0;
+//  		  		arrayQues = new Array();
+//
+//
+//            }
+//        }
+//
+//        sr.Close();
+//       
+//    }
+//    catch (e) {
+//        // Let the user know what went wrong.
+//        print("The file could not be read:");
+//        print(e.Message);
+//    }
  }
 
 	 /*

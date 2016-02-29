@@ -93,7 +93,7 @@ import UnityEngine.SceneManagement;
 			Mostrar = false;
 			SceneManager.LoadScene("level"+level);
 			settingUi(true);
-
+			Time.timeScale = 1f;
 
 			mostrado = false;
 			
@@ -151,8 +151,8 @@ import UnityEngine.SceneManagement;
 		Herramienta.SetActive(bole);
 		if(bole == false)
 		{
-		Time.timeScale = 0f;
-		fondo.GetComponent(SpriteRenderer).color = Color.gray;
+			Time.timeScale = 0f;
+			fondo.GetComponent(SpriteRenderer).color = Color.gray;
 		}
 		else
 		{

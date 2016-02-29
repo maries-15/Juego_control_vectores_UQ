@@ -146,7 +146,7 @@ function settingUi(bol)
 
 	for(var i=0;i<ui.Length;i++)
 	{
-		//Debug.Log(ui[i].name);
+		Debug.Log(ui[i].name);
 	
 		
 		if(ui[i].GetComponent.<Renderer>() != null)

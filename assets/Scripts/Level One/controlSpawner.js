@@ -9,8 +9,8 @@ private var fin;
 var Valdes : GameObject  ;
 var terminados = 0;
 
-private  var spawnTime : float = 3f;		// The amount of time between each spawn.
-private var spawnInicio : float  = 5f;	// The amount of time before spawning starts.
+private  var spawnTime : float = 2f;		// The amount of time between each spawn.
+private var spawnInicio : float  = 1f;	// The amount of time before spawning starts.
 
 public  var lineOne : ParticleSystem;
 public  var lineTwo : ParticleSystem;
@@ -82,9 +82,9 @@ function Spawn( line : ParticleSystem ) : IEnumerator
 	if (conEnemies == oleada) {
 
 		oleada += 25;
-		spawnTime = 4f;
-		spawnInicio = 2f;
-		gravityModifier (0.3f);
+		spawnTime = 1f;
+		spawnInicio = 0.8f;
+		gravityModifier (0.5f);
 		serialization.savedGame.level1 = {"subLevel":oleada, "puntos":clickAndGo.puntos,"Sprite" : vidas.actualLife};
 		serialization.SaveData(null, null, null);
 		print("Grabo");
@@ -95,9 +95,9 @@ function Spawn( line : ParticleSystem ) : IEnumerator
 	}
 	if (conEnemies == oleada) {
 		oleada += 25;
-		spawnTime = 2f;
-		spawnInicio = 1f;
-		gravityModifier (0.3f);
+		spawnTime = 1f;
+		spawnInicio = 0.5f;
+		gravityModifier (0.5f);
 		serialization.savedGame.level1 = {"subLevel":oleada, "puntos":clickAndGo.puntos,"Sprite" : vidas.actualLife};
 		serialization.SaveData(null, null, null);
 		print("Grabo");
@@ -107,7 +107,7 @@ function Spawn( line : ParticleSystem ) : IEnumerator
 		oleada += 30;
 		spawnTime = 1f;
 		spawnInicio = 0.3f;
-		gravityModifier (0.3f);
+		gravityModifier (0.5f);
 		serialization.savedGame.level1 = {"subLevel":oleada, "puntos":clickAndGo.puntos, "Sprite" : vidas.actualLife};
 		serialization.SaveData(null, null, null);
 	}

@@ -23,13 +23,7 @@ var menu  = false;
 
 	// Use this for initialization
 	function Start () {
-			
-		anim = this.GetComponent(Animator);
-		thisTransform = transform;
-		myrigidbody2d = this.GetComponent(Rigidbody2D);
-		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
-		ui = GameObject.FindGameObjectsWithTag("ui");
-		loadLevel();
+		loadLevel(false);
 
 	}
 
@@ -53,17 +47,17 @@ var menu  = false;
 		if (puntos == 20) {
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":10};
+				"vidas":vidas, "fuerzaDerecha":8};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 10f;
+			fuerzaDerecha = 8f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
 		if (puntos == 50) {
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":12};
+				"vidas":vidas, "fuerzaDerecha":9};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 12f;
+			fuerzaDerecha = 9f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 		if(puntos == 80){
@@ -175,11 +169,12 @@ var menu  = false;
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("REINICIAR")) {
 
-			Time.timeScale = 1f;
+			/**Time.timeScale = 1f;
 			settingUi(true);
 			perdio = false;	
 			menu = false;
-			//loadLevel(true);
+			loadLevel(true);**/
+			SceneManager.LoadScene("level2");
 		}
 		if (GUILayout.Button ("SALIR")) {
 			SceneManager.LoadScene("menuInicial");
@@ -220,8 +215,14 @@ var menu  = false;
 		}
 	}
 
-	function loadLevel(){
-		vidas = serialization.savedGame.level2['vidas'];
+	function loadLevel(reiniciar){
+		Time.timeScale = 1f;
+		anim = this.GetComponent(Animator);
+		thisTransform = transform;
+		myrigidbody2d = this.GetComponent(Rigidbody2D);
+		camarapos = GameObject.FindGameObjectWithTag("MainCamera").transform;
+		ui = GameObject.FindGameObjectsWithTag("ui");
+		vidas = 3;
 		puntos = serialization.savedGame.level2['puntos'];
 		level = serialization.savedGame.level2['subLevel'];
 		fuerzaDerecha = parseFloat(""+serialization.savedGame.level2['fuerzaDerecha']);
