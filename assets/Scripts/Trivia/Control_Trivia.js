@@ -88,7 +88,7 @@ function ChangeButtonText(_button : Button, _newText : String) {
 			{
 				print(conversaciones[r]);
 				 arrayQue.Push(conversaciones[r]);
-				 if (arrayQue.length ==  5)
+				 if (arrayQue.length ==  6)
 				 {
 				 	questions.Push(arrayQue);
   		  			arrayQue = new Array();
