@@ -9,7 +9,7 @@ var numberZancudos:int;
 var startTime:int;//Marca el inicia del tiempo desde se comienza a contabilizar
 var timer1:int;//LLeva registro del tempo segundo a segundo
 var total:int = 0;//Se usa para realizar la comparacion entre el tiempo actual con respecto al inicial
-var timeout:int = 12;//tiempo limite que se tiene para jugar
+var timeout:int = 14;//tiempo limite que se tiene para jugar
 var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
 var windowRect:Rect; //Frame en donde se informara al usuario que ha perdido
