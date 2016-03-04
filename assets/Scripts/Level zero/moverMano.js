@@ -22,8 +22,6 @@ function Start()
 		ui = GameObject.FindGameObjectsWithTag("ui");
 		serialization.Save();
 		loadLevel(false);
-
-
 }
 
 function OnMouseDrag()
