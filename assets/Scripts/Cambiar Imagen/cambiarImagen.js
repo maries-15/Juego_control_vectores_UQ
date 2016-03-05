@@ -11,7 +11,7 @@ public var  desing:GUISkin; //Skin general del juego
 
 private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 	"21":"12","23":"12","25":"24","26":"4","27":"4","29":"28","31":"12","32":"22",
-	"33":"22","34":"12","36":"35","38":"37","40":"39","41":"12"};
+	"33":"22","34":"12","36":"35","38":"37","40":"39","41":"12","43":"12"};
 
 function Start () 
 {
@@ -108,6 +108,10 @@ function efectos()
 	{
 		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("SceneLavaderoEC");
+	}
+	else if(cont==43)
+	{
+		SceneManager.LoadScene("creditos");
 	}
 }
 

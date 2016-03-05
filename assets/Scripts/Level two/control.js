@@ -55,9 +55,9 @@ var menu  = false;
 		if (puntos == 50) {
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":9};
+				"vidas":vidas, "fuerzaDerecha":8.5};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 9f;
+			fuerzaDerecha = 8.5f;
 			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 		if(puntos == 80){
