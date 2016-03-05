@@ -89,12 +89,10 @@ import UnityEngine.SceneManagement;
 		GUILayout.BeginHorizontal ();
 		if (GUILayout.Button ("Reiniciar")) {
 
-			
+			Time.timeScale = 1f;
 			Mostrar = false;
 			SceneManager.LoadScene("level"+level);
 			settingUi(true);
-			Time.timeScale = 1f;
-
 			mostrado = false;
 			
 		}

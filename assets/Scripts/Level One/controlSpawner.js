@@ -26,7 +26,7 @@ private var herramienta;
 
 function Start () {
 
-
+		Time.timeScale = 1f;
 		serialization.Save();
 		loadLevel();
 		StartCoroutine (Spawn (lineOne));
@@ -124,8 +124,8 @@ function gravityModifier(gravity : float)
  function loadLevel(){
  	
  	oleada = serialization.savedGame.level1["subLevel"];
+ 	conEnemies = oleada;
 	clickAndGo.puntos = serialization.savedGame.level1["puntos"];
-
 	vidas.actualLife = serialization.savedGame.level1["Sprite"] ;
 
 
