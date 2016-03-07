@@ -102,7 +102,7 @@ import UnityEngine.SceneManagement;
 				SceneManager.LoadScene("menuInicial");
 				//Application.LoadLevel("menuInicial");
 			else
-				SceneManager.LoadScene("Menu");
+				SceneManager.LoadScene("menuInicial");
 				//Application.LoadLevel("Menu");	
 			settingUi(true);
 			

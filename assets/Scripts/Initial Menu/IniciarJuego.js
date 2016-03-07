@@ -18,6 +18,7 @@ function OnMouseDown()
 		SceneManager.LoadScene("cambioImagen");
 	}
 }
+
 function SalirJuego()
 {
 	Application.Quit();

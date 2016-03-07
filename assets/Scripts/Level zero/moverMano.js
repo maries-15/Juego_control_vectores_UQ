@@ -9,7 +9,7 @@ var numberZancudos:int;
 var startTime:int;//Marca el inicia del tiempo desde se comienza a contabilizar
 var timer1:int;//LLeva registro del tempo segundo a segundo
 var total:int = 0;//Se usa para realizar la comparacion entre el tiempo actual con respecto al inicial
-var timeout:int = 14;//tiempo limite que se tiene para jugar
+var timeout:int;//tiempo limite que se tiene para jugar
 var segundos:int = timeout;//lleva la cuenta regresiva que se muestra al usuario
 
 var windowRect:Rect; //Frame en donde se informara al usuario que ha perdido
@@ -19,9 +19,9 @@ private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 
 function Start()
 {
-		ui = GameObject.FindGameObjectsWithTag("ui");
-		serialization.Save();
-		loadLevel(false);
+	ui = GameObject.FindGameObjectsWithTag("ui");
+	serialization.Save();
+	loadLevel(false);
 }
 
 function OnMouseDrag()
@@ -135,6 +135,7 @@ function cargarZancudos(numero,objeto)
 	aux=posInicialMano;
  	level = serialization.savedGame.level0["subLevel"];
  	numberZancudos = 10;
+ 	timeout = 14;
  	if(level ==1 && reiniciar ==true){
  		numberZancudos = numberZancudos-(numberZancudos-puntos);
  	}

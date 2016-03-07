@@ -6,6 +6,7 @@ private var  camarapos:Transform;
 private var  puntos:int;
 private var level:int;
 private var  posicion:float;
+private var addForce:boolean = true;
 public var  MyStyle:GUIStyle;
 private var  lim:int = 50;
  var v:Vector3;
@@ -18,12 +19,13 @@ public var  desing:GUISkin; //Skin general del juego
 var perdio = false; //Variable para controlar el momento en que el usuario pierde
 private var ui:GameObject[]; //Objetos de la interfaz con tag ui
 var menu  = false;
-
+var oldMag:float;
 
 
 	// Use this for initialization
 	function Start () {
 		loadLevel(false);
+		oldMag = 0.0F;
 
 	}
 
@@ -44,27 +46,29 @@ var menu  = false;
 			settingUi(!perdio);
 		}
 		//VerifyPuntos
-		if (puntos == 20) {
+		if (puntos == 20 && level == 1) {
 			level++;
+			addForce = true;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":8};
+				"vidas":vidas, "fuerzaDerecha":11};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 8f;
+			fuerzaDerecha = 11f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
-		if (puntos == 50) {
+		if (puntos == 50 && level == 2) {
 			level++;
+			addForce = true;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":8.5};
+				"vidas":vidas, "fuerzaDerecha":15.5};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 8.5f;
-			thisTransform.localScale =new Vector3(3f,3f,1f);
+			fuerzaDerecha = 15.5f;
 		}
-		if(puntos == 80){
+		if(puntos == 80 && level == 3){
 			print("ganoo");
+			addForce = true;
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":12};
+				"vidas":vidas, "fuerzaDerecha":20};
 			serialization.SaveData(3,null,"CI");
 			SceneManager.LoadScene("cambioImagen");
 		}
@@ -89,14 +93,10 @@ var menu  = false;
 			}
 		}
 		//other controllers
-		if (myrigidbody2d.velocity.x < 2f && Time.timeScale == 1f && puntos < 20) {
+		if (addForce == true) {
 			//thisTransform.position = new Vector3(thisTransform.position.x + 0.1f,thisTransform.position.y,0);
-			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
-		} else if (myrigidbody2d.velocity.x < 9f && Time.timeScale == 1f && puntos >= 20){
-			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
-		}
-		else if (myrigidbody2d.velocity.x < 19f && Time.timeScale == 1f && puntos >= 50){
-			myrigidbody2d.AddForce (Vector2.right * fuerzaDerecha);
+			myrigidbody2d.velocity.x = fuerzaDerecha;
+			addForce = false;
 		}
 		if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
 		{
@@ -130,8 +130,6 @@ var menu  = false;
 	function OnGUI(){
 	GUI.skin = desing;
 		if (perdio == true ) {
-
-			Debug.Log("PP");
 			menu = true;
 			windowRect = new Rect (Screen.width / 2 -220, Screen.height / 2 -100, 500, 100);
 			windowRect = GUI.Window(0,windowRect,func,"PERDISTE \n");
@@ -177,6 +175,7 @@ var menu  = false;
 			SceneManager.LoadScene("level2");
 		}
 		if (GUILayout.Button ("SALIR")) {
+			print("aqui");
 			SceneManager.LoadScene("menuInicial");
 		}
 		GUILayout.EndHorizontal ();
@@ -226,10 +225,8 @@ var menu  = false;
 		puntos = serialization.savedGame.level2['puntos'];
 		level = serialization.savedGame.level2['subLevel'];
 		fuerzaDerecha = parseFloat(""+serialization.savedGame.level2['fuerzaDerecha']);
-		if(level == 2){
+		print("el level es:"+level);
+		if(level == 2 || level == 3){
 			thisTransform.localScale =new Vector3(2f,2f,1f);
-		}
-		else if(level == 3){
-			thisTransform.localScale =new Vector3(3f,3f,1f);
 		}
 	}

@@ -87,10 +87,10 @@ function func(){
 		}
 		if (GUILayout.Button ("Salir")) {
 			Mostrar = false;
-			if(level == 0)
-				SceneManager.LoadScene("menuInicial");
-			else
-				SceneManager.LoadScene("Menu");	
+			//if(level == 0)
+			SceneManager.LoadScene("menuInicial");
+			//else
+			//SceneManager.LoadScene("Menu");	
 			settingUi(true);
 			
 		}
