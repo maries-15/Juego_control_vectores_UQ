@@ -8,23 +8,22 @@ private var dobleSalto:boolean = false;
 private var corriendo:boolean = true;
 
 public var comprobadorSuelo:Transform;
-private var comprobador:float = 0.09;
+private var comprobador:float = 0.15;
 public var mascaraSuelo: LayerMask;
-//private var animator: Animator;
+private var animator: Animator;
 
 
 function Start () {
-	//animator = GetComponent.<Animator>();
+	animator = GetComponent.<Animator>();
 }
 
 function FixedUpdate(){
-
+	this.transform.rotation.z = 0;
 	if(corriendo){
 		GetComponent.<Rigidbody2D>().velocity = new Vector2(velocidad, GetComponent.<Rigidbody2D>().velocity.y);
 	}
-	//animator.SetFloat("velX", GetComponent.<Rigidbody2D>().velocity.x);
 	enSuelo = GetComponent.<Physics2D>().OverlapCircle(comprobadorSuelo.position,comprobador,mascaraSuelo);
-	//animator.SetBool("IsSobrePiso",enSuelo);
+	animator.SetBool("IsSobrePiso",enSuelo);
 	if(enSuelo){
 		dobleSalto = true;
 	}
