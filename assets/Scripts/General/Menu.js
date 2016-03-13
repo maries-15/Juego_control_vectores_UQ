@@ -3,7 +3,7 @@
 
 	
 	public var Mostrar:boolean;
-	public var level:int;
+	public var level:String;
 	public var herramienta:GameObject;//pez
 	public var posicionInicial:Vector3;	
 	public var windowRect:Rect;
@@ -37,8 +37,6 @@ function Update () {
 
 function OnTriggerEnter2D(col: Collider2D){
 
-		//Debug.Log("Colision");
-		if (col.tag == "Player" ) {
 		
 		
 			Mostrar = true;
@@ -51,7 +49,7 @@ function OnTriggerEnter2D(col: Collider2D){
 		//	Debug.Log("Entro");
 			
 
-		}
+		
 		
 	}
 	
@@ -59,8 +57,10 @@ function OnMouseDown()
 {
 	Debug.Log("MouseDown");
 	allAudioSources = FindObjectsOfType(AudioSource) as AudioSource[];
-	settingUi(false);
+	Time.timeScale = 0f;
 	Mostrar = true;
+	//settingUi(false);
+
 	
 	
 	
@@ -71,14 +71,19 @@ function func(){
 
 	
 		if (GUILayout.Button ("Continuar")) {
-			
-			settingUi(true);
+
+
 			Mostrar = false;
+			Time.timeScale = 1f;
+			settingUi(true);
+
 			
 				}
 				
 		if (GUILayout.Button ("Reiniciar")) {
+
 			Mostrar = false;
+			Time.timeScale = 1f;
 			SceneManager.LoadScene("level"+level);
 			settingUi(true);
 			
@@ -86,11 +91,10 @@ function func(){
 			
 		}
 		if (GUILayout.Button ("Salir")) {
+
 			Mostrar = false;
-			//if(level == 0)
+			Time.timeScale = 1f;
 			SceneManager.LoadScene("menuInicial");
-			//else
-			//SceneManager.LoadScene("Menu");	
 			settingUi(true);
 			
 		}
