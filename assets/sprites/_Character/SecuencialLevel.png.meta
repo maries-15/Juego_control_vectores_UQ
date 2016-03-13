@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 686f2c81c801c6e45ae7e7ba8c4053d1
+timeCreated: 1457656444
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "Mo\xF1o"
+    21300002: AlaCorta
+    21300004: AlaLarga
+    21300006: Cuerpo
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: "Mo\xF1o"
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 293
+        width: 112
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -52, y: 37}
+        - {x: -53, y: 36}
+        - {x: -53, y: -20}
+        - {x: -49, y: -35}
+        - {x: 51, y: -35}
+        - {x: 51, y: 37}
+    - name: AlaCorta
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 253
+        width: 131
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.5, y: 81.5}
+        - {x: -65.5, y: -41.5}
+        - {x: -65.5, y: -81.5}
+        - {x: 6.5, y: -81.5}
+        - {x: 65.5, y: -6.5}
+        - {x: 65.5, y: 81.5}
+    - name: AlaLarga
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 263
+        width: 273
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46.5, y: 66.5}
+        - {x: -136.5, y: -41.5}
+        - {x: -136.5, y: -66.5}
+        - {x: -14.5, y: -66.5}
+        - {x: 16.5, y: -63.5}
+        - {x: 136.5, y: 2.5}
+        - {x: 136.5, y: 65.5}
+        - {x: 132.5, y: 66.5}
+    - name: Cuerpo
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 468
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79, y: 9.5}
+        - {x: 79, y: 7.5}
+        - {x: 82, y: 2.5}
+        - {x: 115, y: -31.5}
+        - {x: 200, y: -108.5}
+        - {x: 218, y: -106.5}
+        - {x: 234, y: -103.5}
+        - {x: 234, y: 28.5}
+        - {x: 163, y: 113.5}
+        - {x: -162, y: 113.5}
+        - {x: -234, y: -34.5}
+        - {x: -234, y: -113.5}
+        - {x: 162, y: -113.5}
+        - {x: 167, y: -101.5}
+        - {x: 151, y: -75.5}
+        - {x: 80, y: 3.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

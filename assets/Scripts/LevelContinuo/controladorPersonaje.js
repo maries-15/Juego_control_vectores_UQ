@@ -1,4 +1,5 @@
 ﻿public static var puntuacion:int = 0;
+public static var tropezarTierra: boolean = false;
 public var marcadorPuntos: TextMesh;
 
 public var fuerzaSalto:float = 8f;
@@ -27,8 +28,6 @@ function FixedUpdate(){
 	if(enSuelo){
 		dobleSalto = true;
 	}
-
-	//marcadorPuntos.text = ""+puntuacion;
 }
 
 function Update () {
@@ -39,5 +38,11 @@ function Update () {
 				dobleSalto = false;
 			}
 		}
+	}
+}
+
+function OnTriggerEnter2D(other: Collider2D) {
+	if(other.tag == 'zancudolc'){
+		controlVidaslc.vidas = controlVidaslc.vidas - 1; 
 	}
 }

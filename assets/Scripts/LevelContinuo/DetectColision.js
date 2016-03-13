@@ -16,13 +16,12 @@ function FixedUpdate(){
 	if(continueVerify){
 		verifyUp = GetComponent.<Physics2D>().OverlapArea(coliUp1.position,coliUp2.position,mascara);
 		if(verifyUp){
-			print("VoltearBalde");
 			GetComponent.<Animator>().enabled = true;
+			this.tag = 'Untagged';
 			continueVerify = false;
 		}
 		verifyUSide = GetComponent.<Physics2D>().OverlapArea(coliSide1.position,coliSide2.position,mascara);
 		if(verifyUSide){
-			print("Tropezar");
 			continueVerify = false;
 		}
 	}
