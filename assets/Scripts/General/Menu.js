@@ -19,7 +19,7 @@
 function Start () {
 	 allAudioSources = FindObjectsOfType(AudioSource) as AudioSource[];
 
-	if(level!=2)
+	if(level!=2 && herramienta != null)
 		posicionInicial = herramienta.transform.position;
 		
 	
