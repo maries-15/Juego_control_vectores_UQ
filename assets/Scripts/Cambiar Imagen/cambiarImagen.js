@@ -106,8 +106,8 @@ function efectos()
 	}
 	else if(cont==41)
 	{
-		serialization.SaveData(null,cont,"Menu");
-		SceneManager.LoadScene("SceneLavaderoEC");
+		serialization.SaveData(3,cont,"Init");
+		SceneManager.LoadScene("level3");
 	}
 	else if(cont==43)
 	{
