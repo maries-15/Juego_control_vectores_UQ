@@ -1,28 +1,28 @@
-﻿¿ EN CUÁL DE ESTOS LUGARES EL ZANCUDO COLOCA SUS HUEVOS ?
+﻿¿ En cuál de estos lugares el zancudo coloca sus huevos ?
 1_tanque
 1_botellaCerrada
 1_lavadero
 1_cajones
 1_lavadero
-¿ EL DENGUE, CHICUNGUNYA Y ZIKA SON ENFERMEDADES TRANSMITIDAS POR?
+¿ El Dengue, Chincungunya y Zika son enfermedades transmitidas por ?
 2_mosca
 2_aire
 2_aedes
 2_mariposa
 2_aedes
-¿ LA MANERA MAS EFECTIVA DE PREVENIR LOS ZANCUDOS ES ?
+¿ La manera mas efectiva de prevenir los zancudos es?
 3_repelente
 3_evitarAguas
 3_fumigar
 3_descansar
 3_evitarAguas
-¿ EL LAVADO DE LOS TANQUES ES UNA TAREA QUE SE DEBE HACER CADA ?
+¿ El lavado de los tanques se debe hacer cada ?
 4_ochoDias
 4_quinceDias
 4_unAnio
 4_unDia
 4_ochoDias
-¿ UNA MASCOTA QUE TE PUEDE AYUDAR A CONTROLAR LOS ZANCUDOS ES ?
+¿ Una mascota que te puede ayudar a controlar los zancudos es ?
 5_perro
 5_gato
 5_hamnster
