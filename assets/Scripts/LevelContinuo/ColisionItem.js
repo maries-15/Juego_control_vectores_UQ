@@ -7,7 +7,7 @@ function Start () {
 
 function Update () {
 	if(reference.activeSelf == true){
-		print('Puntuacion');
+	//		print('Puntuacion');
 	}
 }
 
