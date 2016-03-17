@@ -17,8 +17,6 @@ function Start(){
 	var cam = Camera.main;
 	var screenPos: Vector3 = cam.WorldToScreenPoint(pausa.transform.position);
 	pos = new Vector2(50,20);
-	print(screenPos.x);
-	print(screenPos.x/2);
 	size = sizeZancudo = new Vector2((screenPos.x/1.3),20);
 }
 

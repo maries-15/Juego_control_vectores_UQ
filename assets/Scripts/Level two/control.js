@@ -59,9 +59,9 @@ var oldMag:float;
 			level++;
 			addForce = true;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":14};
+				"vidas":vidas, "fuerzaDerecha":12.5};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 14f;
+			fuerzaDerecha = 12.5f;
 		}
 		if(puntos == 80 && level == 3){
 			print("ganoo");
@@ -141,7 +141,7 @@ var oldMag:float;
 			
 		//	GUI.Label(new Rect(10,280,0,0),"Score: " + puntos,MyStyle);
 
-			if(GUI.RepeatButton(new Rect(415,214,50,50),"",ARRIBAStyle))
+			if(GUI.RepeatButton(new Rect(415,207,50,50),"",ARRIBAStyle))
 			{
 				v = new Vector3(thisTransform.position.x ,thisTransform.position.y + 0.3f,0);
 				if(v.y<=3.5f)
@@ -150,7 +150,7 @@ var oldMag:float;
 				}
 			}
 			
-			if(GUI.RepeatButton(new Rect(415,267,50,50),"",ABAJOStyle))
+			if(GUI.RepeatButton(new Rect(415,260,50,50),"",ABAJOStyle))
 			{
 				v = new Vector3(thisTransform.position.x ,thisTransform.position.y - 0.3f,0);
 				if(v.y>=-9)

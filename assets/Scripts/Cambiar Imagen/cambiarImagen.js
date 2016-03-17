@@ -11,7 +11,7 @@ public var  desing:GUISkin; //Skin general del juego
 
 private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 	"21":"12","23":"12","25":"24","26":"5","27":"5","29":"28","31":"12","32":"22",
-	"33":"22","34":"12","36":"35","38":"37","40":"39","41":"12","43":"12"};
+	"33":"22","34":"12","36":"35","39":"38","40":"38","42":"12","44":"12"};
 
 function Start () 
 {
@@ -104,12 +104,12 @@ function efectos()
 		serialization.SaveData(null,cont,"Menu");
 		SceneManager.LoadScene("Menu");
 	}
-	else if(cont==41)
+	else if(cont==42)
 	{
 		serialization.SaveData(3,cont,"Init");
 		SceneManager.LoadScene("level3");
 	}
-	else if(cont==43)
+	else if(cont==44)
 	{
 		SceneManager.LoadScene("creditos");
 	}

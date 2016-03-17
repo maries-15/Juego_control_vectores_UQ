@@ -23,7 +23,6 @@ function cargar()
 {
 
 	yield WaitForSeconds (1f);
-	
 	if(serialization.savedGame.typeInit.Equals("Init")){
 		SceneManager.LoadScene("level"+serialization.savedGame.currentLevel);
 
