@@ -3,6 +3,6 @@
 function OnTriggerEnter2D(other: Collider2D) {
 	if(other.tag == 'Enemy'){
 		GetComponent.<AudioSource>().PlayOneShot(impact, 1);
-		controlVidaslc.vidas = controlVidaslc.vidas - 1; 
+		controladorPersonaje.vidas = controladorPersonaje.vidas - 1; 
 	}
 }
