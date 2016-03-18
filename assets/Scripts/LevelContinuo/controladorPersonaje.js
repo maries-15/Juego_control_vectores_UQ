@@ -1,4 +1,6 @@
-﻿public static var puntuacion:int = 0;
+﻿import UnityEngine;
+
+public static var puntuacion:int = 0;
 public static var tropezarTierra: boolean = false;
 public static var time = 1f;
 public var marcadorPuntos: TextMesh;
@@ -19,11 +21,13 @@ public var  desing:GUISkin;
 var windowRect:Rect;
 public var vidasTextures:Texture2D[];
 public var level:String;
+var anim : Animator ;
 
 function Start () {
 	animator = GetComponent.<Animator>();
 	Time.timeScale =  1f;
 	vidas = 3;
+
 }
 
 function FixedUpdate(){
@@ -57,9 +61,14 @@ function Update () {
 
 function OnTriggerEnter2D(other: Collider2D) {
 	if(other.tag == "zancudolc"){
-		print(other.GetType());
-		if(other.GetType() == UnityEngine.EdgeCollider2D)
-			Destroy(other.gameObject);;
+		
+		if(other.GetType() == UnityEngine.EdgeCollider2D){
+			continueTrigger = false;
+			var anim : Animator = other.gameObject.GetComponent(Animator) ;
+			anim.SetBool("pisa",true);
+			Destroy(other.gameObject);
+		}
+		//	Destroy();;
 
 	}
 }
