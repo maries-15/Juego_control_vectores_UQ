@@ -14,7 +14,6 @@ function Update () {
 	if(vidas == 0){
 		print("perdio");
 		Mostrar = true;
-		time = 0f;;
 	}
 }
 

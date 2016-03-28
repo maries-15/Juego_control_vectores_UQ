@@ -4,6 +4,7 @@ public static var puntuacion:int = 0;
 public static var tropezarTierra: boolean = false;
 public static var time = 1f;
 public var marcadorPuntos: TextMesh;
+var impact : AudioClip; //efecto de sonido cuando se destruye un objeto zancudo
 
 public var fuerzaSalto:float = 8f;
 public var velocidad:float = 1f;
@@ -56,20 +57,6 @@ function Update () {
 		print("perdio");
 		Mostrar = true;
 		Time.timeScale = 0f;;
-	}
-}
-
-function OnTriggerEnter2D(other: Collider2D) {
-	if(other.tag == "zancudolc"){
-		
-		if(other.GetType() == UnityEngine.EdgeCollider2D){
-			continueTrigger = false;
-			var anim : Animator = other.gameObject.GetComponent(Animator) ;
-			anim.SetBool("pisa",true);
-			Destroy(other.gameObject);
-		}
-		//	Destroy();;
-
 	}
 }
 

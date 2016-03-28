@@ -34,9 +34,16 @@ function OnGUI()
 
 function Update()
 {
-    progress = (this.transform.position.x)/distance;
+
+    if(Input.GetKeyDown(KeyCode.Space))//solo con fines de desarrollo
+    {
+       progress = 2;
+    }
     if(progress > 1){
     	serialization.SaveData(3,null,"CI");
-    	SceneManager.LoadScene("cambioImagen");
+    	SceneManager.LoadScene("Trivia");
     }
+    progress = (this.transform.position.x)/distance;
+
+
 }

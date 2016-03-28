@@ -66,9 +66,7 @@ function OnClick(_select : String )
 }
 
 function Update () {
-
 	
-
 }
 
 function ChangeButtonText(_button : Button, _newText : String) {
