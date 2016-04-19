@@ -50,25 +50,25 @@ var oldMag:float;
 			level++;
 			addForce = true;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":11};
+				"vidas":vidas, "fuerzaDerecha":10};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 11f;
+			fuerzaDerecha = 10f;
 			thisTransform.localScale =new Vector3(2f,2f,1f);
 		}
 		if (puntos == 50 && level == 2) {
 			level++;
 			addForce = true;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":12.5};
+				"vidas":vidas, "fuerzaDerecha":11.5};
 			serialization.SaveData(null, null, null);
-			fuerzaDerecha = 12.5f;
+			fuerzaDerecha = 11.5f;
 		}
 		if(puntos == 80 && level == 3){
 			print("ganoo");
 			addForce = true;
 			level++;
 			serialization.savedGame.level2 = {"subLevel":level, "puntos":puntos, 
-				"vidas":vidas, "fuerzaDerecha":20};
+				"vidas":vidas, "fuerzaDerecha":7.5};
 			serialization.SaveData(3,null,"CI");
 			SceneManager.LoadScene("cambioImagen");
 		}
