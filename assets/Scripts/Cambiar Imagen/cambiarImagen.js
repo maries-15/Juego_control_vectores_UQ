@@ -1,6 +1,8 @@
-﻿import System.IO;
+import System.IO;
 
 private var material1:Texture2D;
+var story: AudioClip[];
+var relato:AudioSource;
 var icon:Texture2D;
 var impact : AudioClip;
 var conversaciones:String[];
@@ -15,9 +17,9 @@ private var imagesRepeated: Hashtable = {"6":"5", "14":"12","16":"15","18":"17",
 
 function Start () 
 {
-	
 	cont = serialization.savedGame.image+1;
 	leerArchivo();
+
 	var imageRty = verifyImage(cont);
 	if(imageRty != null){
 		img = Resources.Load(""+imageRty, Sprite);
@@ -25,9 +27,67 @@ function Start ()
 	else{
 		img = Resources.Load(""+cont, Sprite);
 	}
+
+	var object  = GameObject.FindGameObjectWithTag("MainCamera");
+	relato = object.GetComponent.<AudioSource>();
+	print("Entro a"+(cont + 1));
+	playAudio();
 	this.GetComponent(SpriteRenderer).sprite = img;
+
+
+
 }
 
+
+function playAudio()
+{
+
+	
+	relato.clip = story[cont];
+
+	if(!(cont == 12 || cont == 14 || cont ==21 || cont ==23 || cont == 31 ||  cont == 34|| cont == 42))
+	{
+		if(cont != 32){
+			relato.Play();
+			yield WaitForSeconds (story[cont].length + 1.3);
+			print("hablo");
+			continuar();
+		}
+		else{
+			relato.Play();
+			yield WaitForSeconds (story[cont].length + 0.2);
+			print("hablo");
+			continuar();
+		}
+			
+
+	}
+
+
+}
+
+function continuar ()
+{
+
+	if(!conversaciones[cont-1].Equals("cargando")){
+			cont = cont+1;
+			playAudio();
+			efectos();
+			var posicionRendered:String;
+			var imageRendered = verifyImage(cont);
+			print(imageRendered);
+
+
+			if(imageRendered != null){
+				posicionRendered = imageRendered;
+			}
+			else{
+				posicionRendered = ""+cont;
+			}
+			img = Resources.Load(posicionRendered, Sprite);
+			this.GetComponent(SpriteRenderer).sprite = img;
+		}		
+}
 function verifyImage(pos){
 	if(imagesRepeated[""+pos] != null){
 		return imagesRepeated[""+pos];
@@ -38,24 +98,26 @@ function Update () {}
 
 function OnGUI(){ 
 	GUI.skin = desing;
-	if(GUI.Button(Rect(Screen.width - Screen.width/8,Screen.height - Screen.height/5,Screen.width/13,Screen.height/6),icon))
-	{
-		if(!conversaciones[cont-1].Equals("cargando")){
-			cont = cont+1;
-			efectos();
-			var posicionRendered:String;
-			var imageRendered = verifyImage(cont);
-			print(imageRendered);
-			if(imageRendered != null){
-				posicionRendered = imageRendered;
-			}
-			else{
-				posicionRendered = ""+cont;
-			}
-			img = Resources.Load(posicionRendered, Sprite);
-			this.GetComponent(SpriteRenderer).sprite = img;
-		}		
-	}
+//	if(GUI.Button(Rect(Screen.width - Screen.width/8,Screen.height - Screen.height/5,Screen.width/13,Screen.height/6),icon))
+//	{
+//		if(!conversaciones[cont-1].Equals("cargando")){
+//			cont = cont+1;
+//			playAudio();
+//			efectos();
+//			var posicionRendered:String;
+//			var imageRendered = verifyImage(cont);
+//			Debug.Log(cont);
+//			print(imageRendered);
+//			if(imageRendered != null){
+//				posicionRendered = imageRendered;
+//			}
+//			else{
+//				posicionRendered = ""+cont;
+//			}
+//			img = Resources.Load(posicionRendered, Sprite);
+//			this.GetComponent(SpriteRenderer).sprite = img;
+//		}		
+//	}
 	if(!conversaciones[cont-1].Equals("cargando"))
 	{
 		var centeredStyle = GUI.skin.GetStyle("Label");
@@ -64,6 +126,7 @@ function OnGUI(){
 		GUI.color=Color.white;
 		GUI.Box(Rect (50,10,Screen.width - 100,(Screen.width/10)),"");
 	    GUI.Label(Rect (50,10,Screen.width - 100,(Screen.width/10)),""+conversaciones[cont-1]);
+
 	}
 
 }
