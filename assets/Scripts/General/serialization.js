@@ -27,7 +27,8 @@ static function Load() {
 		var bf = new BinaryFormatter();
 		var file = File.Open(Application.persistentDataPath+"/filename.ext", FileMode.Open);
 		savedGame = bf.Deserialize(file);
-		print(savedGame.typeInit);
+//		print(savedGame.typeInit);
+//		print(Application.persistentDataPath);
 		file.Close();
 	}
 }
@@ -46,4 +47,11 @@ static function SaveData(level,image,typeInit) {
 	var bf = new BinaryFormatter();
 	bf.Serialize(fs, savedGame);
 	fs.Close();
+}
+
+static function deleteData(){
+	if(File.Exists(Application.persistentDataPath+"/filename.ext")) {
+		 File.Delete(Application.persistentDataPath + "/filename.ext");
+		 Save();
+	}
 }

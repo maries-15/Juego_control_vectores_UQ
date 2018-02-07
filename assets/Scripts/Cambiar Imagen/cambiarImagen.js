@@ -174,6 +174,7 @@ function efectos()
 	}
 	else if(cont==44)
 	{
+		serialization.deleteData();
 		SceneManager.LoadScene("creditos");
 	}
 }

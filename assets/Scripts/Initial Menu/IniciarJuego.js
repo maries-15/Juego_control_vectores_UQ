@@ -31,7 +31,6 @@ function cargar()
 		SceneManager.LoadScene("Menu");
 	}
 	else if(serialization.savedGame.typeInit.Equals("CI")){
-		
 		SceneManager.LoadScene("cambioImagen");
 	}
 
